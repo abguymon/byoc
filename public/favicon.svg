@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Cake base -->
+  <rect x="20" y="60" width="60" height="20" fill="#FFB6C1" rx="5"/>
+  
+  <!-- Cake middle layer -->
+  <rect x="25" y="45" width="50" height="15" fill="#FFFACD" rx="3"/>
+  
+  <!-- Cake top layer -->
+  <rect x="30" y="35" width="40" height="10" fill="#87CEEB" rx="2"/>
+  
+  <!-- Candle -->
+  <rect x="48" y="25" width="4" height="10" fill="#FFD700"/>
+  
+  <!-- Candle flame -->
+  <ellipse cx="50" cy="20" rx="3" ry="5" fill="#FF6B6B"/>
+  
+  <!-- Sprinkles -->
+  <circle cx="35" cy="50" r="2" fill="#DDA0DD"/>
+  <circle cx="65" cy="50" r="2" fill="#FFB347"/>
+  <circle cx="45" cy="55" r="2" fill="#98FB98"/>
+  <circle cx="55" cy="55" r="2" fill="#F0E68C"/>
+</svg>

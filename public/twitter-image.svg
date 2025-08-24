@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600">
+  <!-- Background -->
+  <rect width="1200" height="600" fill="#FDFBF7"/>
+  
+  <!-- Cake base -->
+  <rect x="400" y="350" width="400" height="80" fill="#D4A5A5" rx="20"/>
+  
+  <!-- Cake middle layer -->
+  <rect x="420" y="300" width="360" height="50" fill="#9CAF88" rx="15"/>
+  
+  <!-- Cake top layer -->
+  <rect x="440" y="250" width="320" height="50" fill="#8B9A47" rx="15"/>
+  
+  <!-- Candle -->
+  <rect x="590" y="200" width="20" height="50" fill="#F4C2A1"/>
+  
+  <!-- Candle flame -->
+  <ellipse cx="600" cy="180" rx="15" ry="20" fill="#FF6B6B"/>
+  
+  <!-- Sprinkles -->
+  <circle cx="450" cy="330" r="8" fill="#E6E6FA"/>
+  <circle cx="750" cy="330" r="8" fill="#F4C2A1"/>
+  <circle cx="500" cy="370" r="8" fill="#98FB98"/>
+  <circle cx="700" cy="370" r="8" fill="#F0E68C"/>
+  
+  <!-- Text -->
+  <text x="600" y="120" font-family="Arial, sans-serif" font-size="64" font-weight="bold" text-anchor="middle" fill="#374151">
+    Bring Your Own Cake
+  </text>
+  <text x="600" y="160" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="#6B7280">
+    Boise, Idaho - September 20th, 2025
+  </text>
+</svg>
