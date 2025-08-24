@@ -37,6 +37,20 @@
     <link rel='canonical' href='https://bringyourowncake.com/' />
     
     <title>Bring Your Own Cake - Boise Picnic Event | September 20th, 2025</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GQSHYPQM7"></script>
+    <script>
+      // @ts-ignore
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args: any[]) {
+        // @ts-ignore
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
     <link
       href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap'
       rel='stylesheet'
@@ -218,6 +232,9 @@
     </script>
 
     <script>
+      // Declare gtag function for TypeScript
+      declare function gtag(...args: any[]): void;
+      
       // Countdown Timer
       function updateCountdown() {
         const eventDate = new Date('September 20, 2025 14:00:00').getTime();
@@ -265,6 +282,12 @@
           btn.innerHTML = 'Coming Soon';
           btn.classList.add('bg-anthro-warm-gray');
           btn.disabled = true;
+
+          // Track ticket button click
+          gtag('event', 'ticket_button_click', {
+            event_category: 'engagement',
+            event_label: 'ticket_button'
+          });
 
           setTimeout(() => {
             btn.innerHTML = 'Buy Tickets Now';
