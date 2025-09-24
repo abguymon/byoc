@@ -105,7 +105,7 @@ export const POST: APIRoute = async ({ request }) => {
             
             <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
               <p style="color: #666; font-size: 14px;">Made with love and lots of sugar 🍰</p>
-              <p style="color: #666; font-size: 12px;">© 2024 BYO Cake Club</p>
+              <p style="color: #666; font-size: 12px;">© 2025 BYO Cake Club</p>
             </div>
           </div>
         `,
