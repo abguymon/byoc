@@ -1,5 +1,6 @@
 ---
 // Set the page title and metadata
+import { Image } from 'astro:assets';
 ---
 
 <html lang="en">
@@ -119,10 +120,14 @@
           <div
             class="w-3/5 sm:w-3/5 max-w-2xl h-[200px] sm:h-[400px] lg:h-[500px] relative flex-shrink-0"
           >
-            <img
-              src="/cake_head.JPG?v=3"
+            <Image
+              src="/cake_head.JPG"
               alt="BYO Cake Club main event photo"
+              width={800}
+              height={500}
               class="w-full h-full object-cover"
+              loading="eager"
+              quality={85}
             />
           </div>
 
@@ -130,10 +135,13 @@
           <div
             class="w-2/5 sm:w-2/5 max-w-md flex items-center justify-center flex-shrink"
           >
-            <img
+            <Image
               src="/byocakeclub.png"
               alt="BYO Cake CLUB Logo"
+              width={300}
               class="w-full h-auto max-w-[120px] sm:max-w-[200px] lg:max-w-md"
+              loading="eager"
+              quality={90}
             />
           </div>
         </div>
@@ -219,10 +227,14 @@
           <!-- Gallery image 1 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
+              <Image
                 src="/cake1.JPG"
                 alt="Pink cake with fruit decoration"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -230,10 +242,14 @@
           <!-- Gallery image 2 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
+              <Image
                 src="/cake2.JPG"
                 alt="Tent event setup with desserts"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -241,10 +257,14 @@
           <!-- Gallery image 3 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
-                src="/cake3.JPG?cache=bust"
+              <Image
+                src="/cake3.JPG"
                 alt="Chalkboard sign with cake drawing"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -252,10 +272,14 @@
           <!-- Gallery image 4 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
+              <Image
                 src="/cake4.JPG"
                 alt="Dessert table with various baked goods"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -263,10 +287,14 @@
           <!-- Gallery image 5 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
+              <Image
                 src="/cake5.JPG"
                 alt="People gathering at the cake event"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -275,10 +303,14 @@
           <!-- Gallery image 1 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
+              <Image
                 src="/cake1.JPG"
                 alt="Pink cake with fruit decoration"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -286,10 +318,14 @@
           <!-- Gallery image 2 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
+              <Image
                 src="/cake2.JPG"
                 alt="Tent event setup with desserts"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -297,10 +333,14 @@
           <!-- Gallery image 3 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
-                src="/cake3.JPG?cache=bust"
+              <Image
+                src="/cake3.JPG"
                 alt="Chalkboard sign with cake drawing"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -308,10 +348,14 @@
           <!-- Gallery image 4 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
+              <Image
                 src="/cake4.JPG"
                 alt="Dessert table with various baked goods"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -319,10 +363,14 @@
           <!-- Gallery image 5 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
+              <Image
                 src="/cake5.JPG"
                 alt="People gathering at the cake event"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -331,10 +379,14 @@
           <!-- Gallery image 1 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
+              <Image
                 src="/cake1.JPG"
                 alt="Pink cake with fruit decoration"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -342,10 +394,14 @@
           <!-- Gallery image 2 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
+              <Image
                 src="/cake2.JPG"
                 alt="Tent event setup with desserts"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -353,10 +409,14 @@
           <!-- Gallery image 3 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
-                src="/cake3.JPG?cache=bust"
+              <Image
+                src="/cake3.JPG"
                 alt="Chalkboard sign with cake drawing"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -364,10 +424,14 @@
           <!-- Gallery image 4 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
+              <Image
                 src="/cake4.JPG"
                 alt="Dessert table with various baked goods"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -375,10 +439,14 @@
           <!-- Gallery image 5 -->
           <div class="gallery-slide">
             <div class="w-48 h-48 overflow-hidden">
-              <img
+              <Image
                 src="/cake5.JPG"
                 alt="People gathering at the cake event"
+                width={192}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
