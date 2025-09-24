@@ -4,19 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        'anthro-cream': '#FDFBF7',
-        'anthro-sage': '#9CAF88',
-        'anthro-dusty-rose': '#D4A5A5',
-        'anthro-moss': '#8B9A47',
-        'anthro-warm-gray': '#6B7280',
-        'anthro-soft-black': '#374151',
-        'anthro-peach': '#F4C2A1',
-        'anthro-lavender': '#E6E6FA',
+        'byoc-teal': '#D0E8E7',
+        'byoc-pink': '#E6397F',
+        'byoc-text-pink': '#C06C84',
+        'byoc-white': '#FFFFFF',
+        'byoc-gray': '#F5F5F5',
       },
       fontFamily: {
-        serif: ['Georgia', 'serif'],
-        elegant: ['Playfair Display', 'Georgia', 'serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Playfair Display', 'Georgia', 'serif'],
+        script: ['Great Vibes', 'cursive'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
     },
   },
