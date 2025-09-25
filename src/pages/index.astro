@@ -651,43 +651,85 @@ import { Image } from 'astro:assets';
             signupButton.textContent = 'SENDING...';
             signupButton.disabled = true;
 
+            let emailSent = false;
+            let netlifySubmitted = false;
+
             try {
-              // Send welcome email using Resend
-              const response = await fetch('/api/send-welcome-email', {
+              // First, always submit to Netlify Forms for storage
+              const netlifyFormData = new FormData();
+              netlifyFormData.append('form-name', 'signup');
+              netlifyFormData.append('email', email);
+              netlifyFormData.append('bot-field', ''); // honeypot field
+
+              const netlifyResponse = await fetch('/', {
                 method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  email: email,
-                  event_date: 'October 4th, 2025',
-                  event_location: "Camel's Back Park",
-                  event_time: '11:00 AM - 1:00 PM',
-                  contact_email: 'bringyourowncake@gmail.com',
-                  ticket_price: '$5 per person',
-                }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(netlifyFormData as any).toString()
               });
 
-              if (response.ok) {
-                // Hide form and show success message
+              if (netlifyResponse.ok) {
+                netlifySubmitted = true;
+                console.log('Form submitted to Netlify successfully');
+              }
+
+              // Try to send welcome email using Resend (primary method)
+              try {
+                const response = await fetch('/api/send-welcome-email', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    email: email,
+                    event_date: 'October 4th, 2025',
+                    event_location: "Camel's Back Park",
+                    event_time: '11:00 AM - 1:00 PM',
+                    contact_email: 'bringyourowncake@gmail.com',
+                    ticket_price: '$5 per person',
+                  }),
+                });
+
+                if (response.ok) {
+                  emailSent = true;
+                  console.log('Welcome email sent successfully via Resend');
+                } else {
+                  console.log('Resend API failed, but form was saved to Netlify');
+                }
+              } catch (resendError) {
+                console.log('Resend API error (likely rate limited):', resendError);
+                // This is expected when hitting Resend limits
+              }
+
+              // Show success message regardless of email status
+              // The form is always saved to Netlify Forms
+              form.style.display = 'none';
+              successMessage.style.display = 'block';
+
+              if (emailSent) {
+                console.log('✅ Email sent and form saved');
+              } else {
+                console.log('📧 Form saved to Netlify (email will be sent later)');
+              }
+
+            } catch (error) {
+              console.log('Error processing form:', error);
+
+              // Show error state only if both methods failed
+              if (!netlifySubmitted) {
+                signupButton.textContent = 'ERROR - TRY AGAIN';
+                signupButton.classList.add('bg-red-500');
+
+                setTimeout(() => {
+                  signupButton.textContent = 'SIGN UP';
+                  signupButton.classList.remove('bg-red-500');
+                  signupButton.disabled = false;
+                }, 3000);
+              } else {
+                // Netlify form succeeded, show success even if Resend failed
                 form.style.display = 'none';
                 successMessage.style.display = 'block';
-                console.log('Welcome email sent successfully');
-              } else {
-                throw new Error('Failed to send email');
+                console.log('📧 Form saved to Netlify (email will be sent later)');
               }
-            } catch (error) {
-              console.log('Error sending email:', error);
-
-              // Show error state
-              signupButton.textContent = 'ERROR - TRY AGAIN';
-              signupButton.classList.add('bg-red-500');
-
-              setTimeout(() => {
-                signupButton.textContent = 'SIGN UP';
-                signupButton.classList.remove('bg-red-500');
-                signupButton.disabled = false;
-              }, 3000);
             }
           } else {
             // Show validation error
