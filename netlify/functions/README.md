@@ -4,15 +4,6 @@ This Netlify function handles Stripe webhook events and inserts ticket data into
 
 ## Setup
 
-### 1. Environment Variables
-
-Set these environment variables in your Netlify dashboard:
-
-- `STRIPE_SECRET_KEY` - Your Stripe secret key (starts with `sk_`)
-- `STRIPE_WEBHOOK_SECRET` - Your Stripe webhook endpoint secret (starts with `whsec_`)
-- `SUPABASE_URL` - Your Supabase project URL
-- `SUPABASE_SERVICE_ROLE_KEY` - Your Supabase service role key (starts with `eyJ`)
-
 ### 2. Supabase Table
 
 Create a `tickets` table in Supabase with the following schema:
