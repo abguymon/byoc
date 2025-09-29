@@ -36,14 +36,20 @@ CREATE INDEX idx_tickets_code ON tickets(code);
 4. Select events: `checkout.session.completed`
 5. Copy the webhook secret and add it to your Netlify environment variables
 
+**Environment Variables:**
+- `STRIPE_WEBHOOK_SECRET` - Production webhook secret (required)
+- `STRIPE_WEBHOOK_SECRET_DEV` - Development webhook secret (optional, for testing)
+
+The function will try the production webhook secret first, then fall back to the dev secret if available.
+
 ## Function Details
 
 The function handles `checkout.session.completed` events and:
 
-1. Extracts customer information from the Stripe session
+1. Extracts customer information from custom fields (firstname, lastname) and customer_details
 2. Retrieves line item quantities
 3. Generates a unique ticket code
-4. Inserts/updates the ticket record in Supabase
+4. Inserts/updates the ticket record in Supabase with customer data
 
 ## Testing
 

@@ -20,18 +20,41 @@ export const handler = async (event: any) => {
   console.log("Stripe signature found:", sig);
 
   let stripeEvent: Stripe.Event;
+  let webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+  
+  // Try production webhook secret first, then fall back to dev secret
   try {
     stripeEvent = stripe.webhooks.constructEvent(
       event.body,
       sig,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      webhookSecret
     );
-    console.log("Stripe event constructed successfully");
+    console.log("Stripe event constructed successfully with production webhook secret");
     console.log("Event type:", stripeEvent.type);
     console.log("Event ID:", stripeEvent.id);
   } catch (err: any) {
-    console.log("ERROR: Failed to construct Stripe event:", err.message);
-    return { statusCode: 400, body: `Webhook Error: ${err.message}` };
+    console.log("Failed with production webhook secret, trying dev webhook secret...");
+    
+    // Try with dev webhook secret if available
+    const devWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET_DEV;
+    if (devWebhookSecret) {
+      try {
+        stripeEvent = stripe.webhooks.constructEvent(
+          event.body,
+          sig,
+          devWebhookSecret
+        );
+        console.log("Stripe event constructed successfully with dev webhook secret");
+        console.log("Event type:", stripeEvent.type);
+        console.log("Event ID:", stripeEvent.id);
+      } catch (devErr: any) {
+        console.log("ERROR: Failed to construct Stripe event with both secrets:", devErr.message);
+        return { statusCode: 400, body: `Webhook Error: ${devErr.message}` };
+      }
+    } else {
+      console.log("ERROR: Failed to construct Stripe event:", err.message);
+      return { statusCode: 400, body: `Webhook Error: ${err.message}` };
+    }
   }
 
   if (stripeEvent.type === "checkout.session.completed") {
@@ -40,6 +63,7 @@ export const handler = async (event: any) => {
     
     console.log("Session data:", JSON.stringify(session, null, 2));
     console.log("Customer details:", JSON.stringify(session.customer_details, null, 2));
+    console.log("Custom fields:", JSON.stringify(session.custom_fields, null, 2));
 
     const paymentIntentId = (session.payment_intent as string) ?? null;
     const sessionId = session.id;
@@ -50,16 +74,35 @@ export const handler = async (event: any) => {
     console.log("- Session ID:", sessionId);
     console.log("- Email:", email);
 
-    // Try to split name into first/last
+    // Extract first name and last name from custom fields
     let firstName: string | null = null;
     let lastName: string | null = null;
-    if (session.customer_details?.name) {
+    
+    if (session.custom_fields && session.custom_fields.length > 0) {
+      // Look for firstname and lastname custom fields
+      const firstNameField = session.custom_fields.find(field => field.key === "firstname");
+      const lastNameField = session.custom_fields.find(field => field.key === "lastname");
+      
+      if (firstNameField?.text?.value) {
+        firstName = firstNameField.text.value;
+      }
+      if (lastNameField?.text?.value) {
+        lastName = lastNameField.text.value;
+      }
+      
+      console.log("- Custom fields found:", { firstName, lastName });
+    }
+    
+    // Fallback: try to split name from customer_details if custom fields not available
+    if (!firstName && !lastName && session.customer_details?.name) {
       const parts = session.customer_details.name.trim().split(" ");
       firstName = parts[0];
       lastName = parts.length > 1 ? parts.slice(1).join(" ") : null;
-      console.log("- Name split:", { firstName, lastName, originalName: session.customer_details.name });
-    } else {
-      console.log("- No customer name provided");
+      console.log("- Name split from customer_details:", { firstName, lastName, originalName: session.customer_details.name });
+    }
+    
+    if (!firstName && !lastName) {
+      console.log("- No customer name provided in custom fields or customer_details");
     }
 
     // Quantity → from line_items
