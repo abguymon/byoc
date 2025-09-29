@@ -1,8 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
+import QRCode from "qrcode";
+import { Resend } from "resend";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: "2025-08-27.basil" });
 const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
+const resend = new Resend(process.env.RESEND_API_KEY!);
 
 export const handler = async (event: any) => {
   console.log("=== WEBHOOK RECEIVED ===");
@@ -151,6 +154,79 @@ export const handler = async (event: any) => {
       return { statusCode: 200, body: "Received (DB error logged)" };
     } else {
       console.log("✅ Successfully inserted ticket into Supabase");
+      
+      // Send email with QR code if email is available
+      if (email) {
+        try {
+          console.log("=== SENDING EMAIL WITH QR CODE ===");
+          
+          // Generate QR code as data URL
+          const qrCodeDataUrl = await QRCode.toDataURL(code, {
+            width: 200,
+            margin: 2,
+            color: {
+              dark: '#000000',
+              light: '#FFFFFF'
+            }
+          });
+          
+          // Send email using Resend
+          const emailResult = await resend.emails.send({
+            from: 'BYOC Cake Club <noreply@byocakeclub.com>', // Update with your verified domain
+            to: [email],
+            subject: 'Your BYOC Cake Club Ticket',
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                <h2 style="color: #333; text-align: center;">🎂 Welcome to BYOC Cake Club! 🎂</h2>
+                
+                <p>Hello ${firstName ? firstName : 'there'},</p>
+                
+                <p>Thank you for your purchase! Your ticket has been confirmed.</p>
+                
+                <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;">
+                  <h3 style="color: #333; margin-top: 0;">Your Ticket Code</h3>
+                  <p style="font-size: 18px; font-weight: bold; color: #007bff; margin: 10px 0;">${code}</p>
+                  
+                  <h3 style="color: #333;">QR Code</h3>
+                  <img src="${qrCodeDataUrl}" alt="QR Code for ticket ${code}" style="display: block; margin: 10px auto; border: 1px solid #ddd; border-radius: 4px;" />
+                  
+                  <p style="font-size: 14px; color: #666; margin-top: 15px;">
+                    Present this QR code at the event for entry. Each code can only be used once.
+                  </p>
+                </div>
+                
+                <div style="background-color: #e9ecef; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                  <h4 style="color: #333; margin-top: 0;">Ticket Details:</h4>
+                  <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li><strong>Ticket Code:</strong> ${code}</li>
+                    <li><strong>Quantity:</strong> ${quantity}</li>
+                    ${firstName ? `<li><strong>Name:</strong> ${firstName}${lastName ? ` ${lastName}` : ''}</li>` : ''}
+                    <li><strong>Email:</strong> ${email}</li>
+                  </ul>
+                </div>
+                
+                <p style="color: #666; font-size: 14px;">
+                  If you have any questions, please contact us at support@byocakeclub.com
+                </p>
+                
+                <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
+                
+                <p style="color: #999; font-size: 12px; text-align: center;">
+                  BYOC Cake Club - Bringing the community together, one cake at a time! 🍰
+                </p>
+              </div>
+            `,
+          });
+          
+          console.log("✅ Email sent successfully:", emailResult.data?.id);
+          
+        } catch (emailError) {
+          console.error("❌ Failed to send email:", emailError);
+          // Don't fail the webhook if email fails - the ticket was still created successfully
+        }
+      } else {
+        console.log("⚠️ No email address available, skipping email send");
+      }
     }
   } else {
     console.log("Event type not handled:", stripeEvent.type);
