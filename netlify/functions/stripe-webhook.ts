@@ -158,15 +158,34 @@ export const handler = async (event: any) => {
         try {
           console.log("=== SENDING EMAIL WITH QR CODE ===");
           
-          // Generate QR code as data URL
-          const qrCodeDataUrl = await QRCode.toDataURL(code, {
-            width: 200,
-            margin: 2,
-            color: {
-              dark: '#000000',
-              light: '#FFFFFF'
-            }
-          });
+          // Generate QR code as data URL with better email compatibility
+          let qrCodeDataUrl;
+          try {
+            qrCodeDataUrl = await QRCode.toDataURL(code, {
+              width: 200,
+              margin: 2,
+              color: {
+                dark: '#000000',
+                light: '#FFFFFF'
+              },
+              type: 'image/png'
+            });
+            
+            console.log("QR Code generated successfully, data URL length:", qrCodeDataUrl.length);
+            console.log("QR Code data URL preview:", qrCodeDataUrl.substring(0, 50) + "...");
+          } catch (qrError) {
+            console.error("Failed to generate QR code:", qrError);
+            // Fallback: create a simple text-based representation
+            qrCodeDataUrl = `data:image/svg+xml;base64,${Buffer.from(`
+              <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="200" fill="white" stroke="#E6397F" stroke-width="2"/>
+                <text x="100" y="100" text-anchor="middle" font-family="Arial" font-size="12" fill="#E6397F">
+                  QR Code: ${code}
+                </text>
+              </svg>
+            `).toString('base64')}`;
+            console.log("Using fallback QR code representation");
+          }
           
           // Check if we're in development mode (no API key)
           const apiKey = process.env.RESEND_API_KEY;
@@ -198,10 +217,12 @@ export const handler = async (event: any) => {
                       <p style="font-size: 18px; font-weight: bold; color: #E6397F; margin: 10px 0;">${code}</p>
                       
                       <h3 style="color: #E6397F;">QR Code</h3>
-                      <img src="${qrCodeDataUrl}" alt="QR Code for ticket ${code}" style="display: block; margin: 10px auto; border: 1px solid #ddd; border-radius: 4px;" />
+                      <div style="text-align: center; margin: 15px 0;">
+                        <img src="${qrCodeDataUrl}" alt="QR Code for ticket ${code}" style="display: block; margin: 0 auto; border: 2px solid #E6397F; border-radius: 8px; max-width: 200px; height: auto;" />
+                      </div>
                       
                       <p style="font-size: 14px; color: #666; margin-top: 15px;">
-                        Present this QR code at the event for entry. Each code can only be used once.
+                        Present this QR code at the event for entry.
                       </p>
                     </div>
                     
