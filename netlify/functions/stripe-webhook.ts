@@ -1,11 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
 import QRCode from "qrcode";
-import { Resend } from "resend";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: "2025-08-27.basil" });
 const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
-const resend = new Resend(process.env.RESEND_API_KEY!);
 
 export const handler = async (event: any) => {
   console.log("=== WEBHOOK RECEIVED ===");
@@ -170,55 +168,81 @@ export const handler = async (event: any) => {
             }
           });
           
-          // Send email using Resend
-          const emailResult = await resend.emails.send({
-            from: 'BYOC Cake Club <noreply@byocakeclub.com>', // Update with your verified domain
-            to: [email],
-            subject: 'Your BYOC Cake Club Ticket',
-            html: `
-              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-                <h2 style="color: #333; text-align: center;">🎂 Welcome to BYOC Cake Club! 🎂</h2>
-                
-                <p>Hello ${firstName ? firstName : 'there'},</p>
-                
-                <p>Thank you for your purchase! Your ticket has been confirmed.</p>
-                
-                <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;">
-                  <h3 style="color: #333; margin-top: 0;">Your Ticket Code</h3>
-                  <p style="font-size: 18px; font-weight: bold; color: #007bff; margin: 10px 0;">${code}</p>
-                  
-                  <h3 style="color: #333;">QR Code</h3>
-                  <img src="${qrCodeDataUrl}" alt="QR Code for ticket ${code}" style="display: block; margin: 10px auto; border: 1px solid #ddd; border-radius: 4px;" />
-                  
-                  <p style="font-size: 14px; color: #666; margin-top: 15px;">
-                    Present this QR code at the event for entry. Each code can only be used once.
-                  </p>
-                </div>
-                
-                <div style="background-color: #e9ecef; padding: 15px; border-radius: 8px; margin: 20px 0;">
-                  <h4 style="color: #333; margin-top: 0;">Ticket Details:</h4>
-                  <ul style="margin: 10px 0; padding-left: 20px;">
-                    <li><strong>Ticket Code:</strong> ${code}</li>
-                    <li><strong>Quantity:</strong> ${quantity}</li>
-                    ${firstName ? `<li><strong>Name:</strong> ${firstName}${lastName ? ` ${lastName}` : ''}</li>` : ''}
-                    <li><strong>Email:</strong> ${email}</li>
-                  </ul>
-                </div>
-                
-                <p style="color: #666; font-size: 14px;">
-                  If you have any questions, please contact us at support@byocakeclub.com
-                </p>
-                
-                <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
-                
-                <p style="color: #999; font-size: 12px; text-align: center;">
-                  BYOC Cake Club - Bringing the community together, one cake at a time! 🍰
-                </p>
-              </div>
-            `,
-          });
-          
-          console.log("✅ Email sent successfully:", emailResult.data?.id);
+          // Check if we're in development mode (no API key)
+          const apiKey = process.env.RESEND_API_KEY;
+          if (!apiKey || apiKey === 're_your_api_key_here') {
+            console.log('Development mode: Mocking email send for', email);
+            console.log('✅ Mock email sent successfully (development mode)');
+          } else {
+            // Send email using Resend API directly (same pattern as send-welcome-email.ts)
+            const resendResponse = await fetch('https://api.resend.com/emails', {
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${apiKey}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                from: process.env.MAIL_FROM || 'BYO Cake Club <noreply@bringyourowncake.com>',
+                to: [email],
+                subject: 'Your BYO Cake Club Ticket 🎂',
+                html: `
+                  <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                    <h1 style="color: #E6397F; text-align: center;">Your BYO Cake Club Ticket! 🎂</h1>
+                    
+                    <p>Hello ${firstName ? firstName : 'there'},</p>
+                    
+                    <p>Thank you for your purchase! Your ticket has been confirmed.</p>
+                    
+                    <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;">
+                      <h3 style="color: #E6397F; margin-top: 0;">Your Ticket Code</h3>
+                      <p style="font-size: 18px; font-weight: bold; color: #E6397F; margin: 10px 0;">${code}</p>
+                      
+                      <h3 style="color: #E6397F;">QR Code</h3>
+                      <img src="${qrCodeDataUrl}" alt="QR Code for ticket ${code}" style="display: block; margin: 10px auto; border: 1px solid #ddd; border-radius: 4px;" />
+                      
+                      <p style="font-size: 14px; color: #666; margin-top: 15px;">
+                        Present this QR code at the event for entry. Each code can only be used once.
+                      </p>
+                    </div>
+                    
+                    <div style="background-color: #e9ecef; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                      <h4 style="color: #333; margin-top: 0;">Ticket Details:</h4>
+                      <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li><strong>Ticket Code:</strong> ${code}</li>
+                        <li><strong>Quantity:</strong> ${quantity}</li>
+                        ${firstName ? `<li><strong>Name:</strong> ${firstName}${lastName ? ` ${lastName}` : ''}</li>` : ''}
+                        <li><strong>Email:</strong> ${email}</li>
+                      </ul>
+                    </div>
+                    
+                    <div style="background-color: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                      <h3 style="color: #856404; margin-top: 0;">What to Bring</h3>
+                      <p>Please bring your own cake creation to share! Homemade and decorated cakes are encouraged.</p>
+                    </div>
+                    
+                    <div style="text-align: center; margin: 30px 0;">
+                      <p>We're excited to see your delicious creations!</p>
+                      <p>Questions? Email us at <a href="mailto:${process.env.CONTACT_EMAIL || 'contact@bringyourowncake.com'}" style="color: #E6397F;">${process.env.CONTACT_EMAIL || 'contact@bringyourowncake.com'}</a></p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+                      <p style="color: #666; font-size: 14px;">Made with love and lots of sugar 🍰</p>
+                      <p style="color: #666; font-size: 12px;">© 2025 BYO Cake Club</p>
+                    </div>
+                  </div>
+                `,
+              }),
+            });
+
+            if (!resendResponse.ok) {
+              const errorData = await resendResponse.json();
+              console.error('Resend API error:', errorData);
+              throw new Error('Failed to send email');
+            }
+
+            const result = await resendResponse.json();
+            console.log("✅ Email sent successfully:", result.id);
+          }
           
         } catch (emailError) {
           console.error("❌ Failed to send email:", emailError);
