@@ -18,6 +18,7 @@ CREATE TABLE tickets (
   last_name TEXT,
   quantity INTEGER DEFAULT 1,
   code TEXT NOT NULL,
+  redeemed_at TIMESTAMP WITH TIME ZONE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -26,6 +27,8 @@ CREATE TABLE tickets (
 CREATE INDEX idx_tickets_stripe_payment_intent ON tickets(stripe_payment_intent);
 CREATE INDEX idx_tickets_email ON tickets(email);
 CREATE INDEX idx_tickets_code ON tickets(code);
+CREATE INDEX idx_tickets_redeemed_at ON tickets(redeemed_at);
+CREATE INDEX idx_tickets_code_redeemed ON tickets(code, redeemed_at);
 ```
 
 ### 3. Stripe Webhook Configuration

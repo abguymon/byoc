@@ -103,3 +103,4 @@ Check the function logs to see which webhook secret was used:
 4. **Flexible Setup**: Dev secret is optional - works with just production secret
 
 Your webhook function is now ready to handle both production and development Stripe flows! 🚀
+

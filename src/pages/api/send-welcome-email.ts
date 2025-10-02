@@ -46,24 +46,25 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    // Check if we're in development mode (no API key)
+    // Get API key from environment
     const apiKey = import.meta.env.RESEND_API_KEY;
-    if (!apiKey || apiKey === 're_your_api_key_here') {
-      console.log('Development mode: Mocking email send for', email);
+    if (!apiKey) {
+      console.error('RESEND_API_KEY not found in environment variables');
       return new Response(
-        JSON.stringify({
-          success: true,
-          messageId: 'mock-' + Date.now(),
-          message: 'Email would be sent in production',
-        }),
+        JSON.stringify({ error: 'Email service not configured' }),
         {
-          status: 200,
+          status: 500,
           headers: { 'Content-Type': 'application/json' },
         }
       );
     }
 
-    // Send welcome email using Resend
+    // Send welcome email using Resend with timeout
+    console.log('Sending email via Resend API...');
+    
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+    
     const resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -71,9 +72,7 @@ export const POST: APIRoute = async ({ request }) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from:
-          import.meta.env.MAIL_FROM ||
-          'BYO Cake Club <noreply@bringyourowncake.com>',
+        from: 'BYO Cake Club <noreply@bringyourowncake.com>',
         to: [email],
         subject: 'Welcome to BYO Cake Club! 🎂',
         html: `
@@ -110,7 +109,10 @@ export const POST: APIRoute = async ({ request }) => {
           </div>
         `,
       }),
+      signal: controller.signal,
     });
+    
+    clearTimeout(timeoutId);
 
     if (!resendResponse.ok) {
       const errorData = await resendResponse.json();
@@ -133,6 +135,15 @@ export const POST: APIRoute = async ({ request }) => {
     );
   } catch (error) {
     console.error('Error sending welcome email:', error);
+    
+    // Handle timeout errors specifically
+    if (error.name === 'AbortError') {
+      return new Response(JSON.stringify({ error: 'Email service timeout' }), {
+        status: 408,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    
     return new Response(JSON.stringify({ error: 'Internal server error' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },

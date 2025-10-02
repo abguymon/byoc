@@ -131,3 +131,4 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 4. **Set up webhook endpoint** in Stripe dashboard
 
 Your webhook function is now ready for development and testing! 🚀
+

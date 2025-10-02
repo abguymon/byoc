@@ -171,22 +171,9 @@ import { Image } from 'astro:assets';
         <!-- Sign up form -->
         <div id="signup-container" class="max-w-lg mx-auto px-4">
           <form
-            name="signup"
-            method="POST"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
+            id="signup-form"
             class="flex flex-col sm:flex-row gap-4 sm:gap-6"
           >
-            <!-- Hidden honeypot field -->
-            <input type="hidden" name="form-name" value="signup" />
-            <div style="display: none;">
-              <label
-                >Don't fill this out if you're human: <input
-                  name="bot-field"
-                /></label
-              >
-            </div>
-
             <input
               type="email"
               name="email"
@@ -213,9 +200,30 @@ import { Image } from 'astro:assets';
             <p class="text-byoc-pink text-lg sm:text-xl font-sans mb-4">
               Thanks for signing up! 🎂
             </p>
-            <p class="text-byoc-text-pink text-base font-sans">
+            <p class="text-byoc-text-pink text-base font-sans mb-6">
               We'll email you an invite with all the event details.
             </p>
+            
+            <!-- Ticket Purchase Section -->
+            <div class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
+              <h3 class="text-byoc-pink text-lg font-sans font-semibold mb-4">
+                Ready to Join Us?
+              </h3>
+              <p class="text-gray-700 text-sm mb-4">
+                You can purchase your ticket now and secure your spot at the event!
+              </p>
+              <a
+                href="https://buy.stripe.com/5kQbJ0eOi0dpgaN30igA800"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block bg-byoc-pink text-white px-6 py-3 rounded-lg font-sans font-semibold hover:bg-opacity-90 transition-colors text-sm"
+              >
+                Buy Ticket - $5
+              </a>
+              <p class="text-gray-500 text-xs mt-3">
+                Secure checkout powered by Stripe
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -623,7 +631,7 @@ import { Image } from 'astro:assets';
       });
 
       // Handle form submission inline
-      const form = document.querySelector('form[name="signup"]');
+      const form = document.getElementById('signup-form');
       const emailInput = document.getElementById(
         'email-input'
       ) as HTMLInputElement;
@@ -651,71 +659,41 @@ import { Image } from 'astro:assets';
             signupButton.textContent = 'SENDING...';
             signupButton.disabled = true;
 
-            let emailSent = false;
-            let netlifySubmitted = false;
-
             try {
-              // First, always submit to Netlify Forms for storage
-              const netlifyFormData = new FormData();
-              netlifyFormData.append('form-name', 'signup');
-              netlifyFormData.append('email', email);
-              netlifyFormData.append('bot-field', ''); // honeypot field
+              // Send welcome email using Resend
+              const controller = new AbortController();
+              const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
-              const netlifyResponse = await fetch('/', {
+              const response = await fetch('/api/send-welcome-email', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(netlifyFormData as any).toString()
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  email: email,
+                  event_date: 'October 4th, 2025',
+                  event_location: "Camel's Back Park",
+                  event_time: '11:00 AM - 1:00 PM',
+                  contact_email: 'bringyourowncake@gmail.com',
+                  ticket_price: '$5 per person',
+                }),
+                signal: controller.signal,
               });
 
-              if (netlifyResponse.ok) {
-                netlifySubmitted = true;
-                console.log('Form submitted to Netlify successfully');
-              }
+              clearTimeout(timeoutId);
 
-              // Try to send welcome email using Resend (primary method)
-              try {
-                const response = await fetch('/api/send-welcome-email', {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({
-                    email: email,
-                    event_date: 'October 4th, 2025',
-                    event_location: "Camel's Back Park",
-                    event_time: '11:00 AM - 1:00 PM',
-                    contact_email: 'bringyourowncake@gmail.com',
-                    ticket_price: '$5 per person',
-                  }),
-                });
-
-                if (response.ok) {
-                  emailSent = true;
-                  console.log('Welcome email sent successfully via Resend');
-                } else {
-                  console.log('Resend API failed, but form was saved to Netlify');
-                }
-              } catch (resendError) {
-                console.log('Resend API error (likely rate limited):', resendError);
-                // This is expected when hitting Resend limits
-              }
-
-              // Show success message regardless of email status
-              // The form is always saved to Netlify Forms
-              form.style.display = 'none';
-              successMessage.style.display = 'block';
-
-              if (emailSent) {
-                console.log('✅ Email sent and form saved');
+              if (response.ok) {
+                const result = await response.json();
+                console.log('✅ Welcome email sent successfully:', result);
+                
+                // Show success message
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
               } else {
-                console.log('📧 Form saved to Netlify (email will be sent later)');
-              }
-
-            } catch (error) {
-              console.log('Error processing form:', error);
-
-              // Show error state only if both methods failed
-              if (!netlifySubmitted) {
+                const errorData = await response.json();
+                console.error('❌ Failed to send email:', errorData);
+                
+                // Show error state
                 signupButton.textContent = 'ERROR - TRY AGAIN';
                 signupButton.classList.add('bg-red-500');
 
@@ -724,12 +702,20 @@ import { Image } from 'astro:assets';
                   signupButton.classList.remove('bg-red-500');
                   signupButton.disabled = false;
                 }, 3000);
-              } else {
-                // Netlify form succeeded, show success even if Resend failed
-                form.style.display = 'none';
-                successMessage.style.display = 'block';
-                console.log('📧 Form saved to Netlify (email will be sent later)');
               }
+
+            } catch (error) {
+              console.error('❌ Error sending email:', error);
+
+              // Show error state
+              signupButton.textContent = 'ERROR - TRY AGAIN';
+              signupButton.classList.add('bg-red-500');
+
+              setTimeout(() => {
+                signupButton.textContent = 'SIGN UP';
+                signupButton.classList.remove('bg-red-500');
+                signupButton.disabled = false;
+              }, 3000);
             }
           } else {
             // Show validation error

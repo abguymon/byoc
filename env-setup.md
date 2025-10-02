@@ -7,6 +7,7 @@ Create a `.env` file in your project root with:
 ```
 RESEND_API_KEY=re_your_api_key_here
 MAIL_FROM=BYO Cake Club <noreply@bringyourowncake.com>
+STAFF_PASSWORD=your_secure_staff_password_here
 ```
 
 ## Getting Your Resend API Key
@@ -32,4 +33,12 @@ When deploying to Netlify:
 1. Go to Site Settings → Environment Variables
 2. Add `RESEND_API_KEY` with your API key value
 3. Add `MAIL_FROM` with your sender email (e.g., `BYO Cake Club <noreply@bringyourowncake.com>`)
-4. Redeploy your site
+4. Add `STAFF_PASSWORD` with your secure staff password
+5. Redeploy your site
+
+### Staff Password Security
+
+- **Choose a strong password**: Use a combination of letters, numbers, and symbols
+- **Keep it secret**: Don't share the password in code repositories
+- **Change regularly**: Update the password periodically for security
+- **Different environments**: Use different passwords for development and production

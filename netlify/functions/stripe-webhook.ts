@@ -138,6 +138,7 @@ export const handler = async (event: any) => {
       last_name: lastName,
       quantity,
       code,
+      redeemed_at: null, // Tickets start as unredeemed
     };
     
     console.log("=== INSERTING INTO SUPABASE ===");

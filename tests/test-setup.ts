@@ -9,3 +9,4 @@ global.console = {
   warn: vi.fn(),
   info: vi.fn(),
 };
+

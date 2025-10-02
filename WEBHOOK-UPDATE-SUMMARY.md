@@ -84,3 +84,4 @@ Your webhook function is now properly configured to:
 4. Provide detailed logging for debugging
 
 The function will work correctly with your actual Stripe webhook payloads! 🎉
+
