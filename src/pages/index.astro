@@ -191,6 +191,27 @@ import { Image } from 'astro:assets';
             </button>
           </form>
 
+          <!-- Ticket Purchase Section (always visible) -->
+          <div id="payment-section" class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto mt-8">
+            <h3 class="text-byoc-pink text-lg font-sans font-semibold mb-4">
+              Ready to Join Us?
+            </h3>
+            <p class="text-gray-700 text-sm mb-4">
+              Purchase your ticket now and secure your spot at the event!
+            </p>
+            <a
+              href="https://buy.stripe.com/5kQbJ0eOi0dpgaN30igA800"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block bg-byoc-pink text-white px-6 py-3 rounded-lg font-sans font-semibold hover:bg-opacity-90 transition-colors text-sm"
+            >
+              Buy Ticket - $5
+            </a>
+            <p class="text-gray-500 text-xs mt-3">
+              Secure checkout powered by Stripe
+            </p>
+          </div>
+
           <!-- Success message (hidden by default) -->
           <div
             id="success-message"
@@ -203,27 +224,6 @@ import { Image } from 'astro:assets';
             <p class="text-byoc-text-pink text-base font-sans mb-6">
               We'll email you an invite with all the event details.
             </p>
-            
-            <!-- Ticket Purchase Section -->
-            <div class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
-              <h3 class="text-byoc-pink text-lg font-sans font-semibold mb-4">
-                Ready to Join Us?
-              </h3>
-              <p class="text-gray-700 text-sm mb-4">
-                You can purchase your ticket now and secure your spot at the event!
-              </p>
-              <a
-                href="https://buy.stripe.com/5kQbJ0eOi0dpgaN30igA800"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-block bg-byoc-pink text-white px-6 py-3 rounded-lg font-sans font-semibold hover:bg-opacity-90 transition-colors text-sm"
-              >
-                Buy Ticket - $5
-              </a>
-              <p class="text-gray-500 text-xs mt-3">
-                Secure checkout powered by Stripe
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -692,7 +692,7 @@ import { Image } from 'astro:assets';
                   const result = await response.json();
                   console.log('✅ Welcome email sent successfully:', result);
                   
-                  // Show success message
+                  // Show success message and hide form (keep payment section visible)
                   form.style.display = 'none';
                   successMessage.style.display = 'block';
                 } catch (parseError) {
