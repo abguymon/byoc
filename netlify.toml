@@ -15,7 +15,4 @@
   auto_launch = false
   framework = "astro"
 
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
+# API routes are handled by Astro automatically
