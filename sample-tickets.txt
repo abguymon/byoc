@@ -1,0 +1,5 @@
+TCKT-JANE2024 | Jane Smith | jane.smith@example.com | Qty: 2 | Status: VALID
+TCKT-JOHN2024 | John Doe | john.doe@example.com | Qty: 1 | Status: VALID
+TCKT-MARY2024 | Mary Johnson | mary.johnson@example.com | Qty: 3 | Status: REDEEMED
+TCKT-BOB2024 | Bob Wilson | bob.wilson@example.com | Qty: 1 | Status: VALID
+TCKT-SARAH2024 | Sarah Brown | sarah.brown@example.com | Qty: 2 | Status: REDEEMED

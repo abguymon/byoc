@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYOC Sample Tickets - Testing</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+        .tickets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .ticket-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .ticket-code {
+            font-size: 18px;
+            font-weight: 600;
+            color: #e91e63;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+        .qr-code {
+            margin: 15px 0;
+            display: inline-block;
+        }
+        .ticket-info {
+            font-size: 14px;
+            color: #666;
+            margin: 10px 0;
+        }
+        .status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .status.redeemed {
+            background: #fee;
+            color: #c53030;
+        }
+        .status.valid {
+            background: #efe;
+            color: #2f855a;
+        }
+        .instructions {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .instructions h2 {
+            color: #e91e63;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍰 BYOC Sample Tickets for Testing</h1>
+        
+        <div class="instructions">
+            <h2>How to Test:</h2>
+            <ol>
+                <li>Go to <strong>http://localhost:4321/staff</strong> and login with password: <code>cake2024</code></li>
+                <li>Click "Start Scanner" to use your camera, OR use manual entry</li>
+                <li>Scan any QR code below, or manually type the ticket code</li>
+                <li>Verify the ticket information displays correctly</li>
+                <li>Test marking redeemed/valid tickets as redeemed</li>
+            </ol>
+        </div>
+
+        <div class="tickets-grid">
+            
+                <div class="ticket-card">
+                    <div class="ticket-code">TCKT-JANE2024</div>
+                    <div class="qr-code" id="qr-TCKT-JANE2024"></div>
+                    <div class="ticket-info">
+                        <strong>Jane Smith</strong><br>
+                        jane.smith@example.com<br>
+                        Quantity: 2<br>
+                        <span class="status valid">
+                            Valid - Not Redeemed
+                        </span>
+                    </div>
+                </div>
+            
+                <div class="ticket-card">
+                    <div class="ticket-code">TCKT-JOHN2024</div>
+                    <div class="qr-code" id="qr-TCKT-JOHN2024"></div>
+                    <div class="ticket-info">
+                        <strong>John Doe</strong><br>
+                        john.doe@example.com<br>
+                        Quantity: 1<br>
+                        <span class="status valid">
+                            Valid - Not Redeemed
+                        </span>
+                    </div>
+                </div>
+            
+                <div class="ticket-card">
+                    <div class="ticket-code">TCKT-MARY2024</div>
+                    <div class="qr-code" id="qr-TCKT-MARY2024"></div>
+                    <div class="ticket-info">
+                        <strong>Mary Johnson</strong><br>
+                        mary.johnson@example.com<br>
+                        Quantity: 3<br>
+                        <span class="status redeemed">
+                            Already Redeemed
+                        </span>
+                    </div>
+                </div>
+            
+                <div class="ticket-card">
+                    <div class="ticket-code">TCKT-BOB2024</div>
+                    <div class="qr-code" id="qr-TCKT-BOB2024"></div>
+                    <div class="ticket-info">
+                        <strong>Bob Wilson</strong><br>
+                        bob.wilson@example.com<br>
+                        Quantity: 1<br>
+                        <span class="status valid">
+                            Valid - Not Redeemed
+                        </span>
+                    </div>
+                </div>
+            
+                <div class="ticket-card">
+                    <div class="ticket-code">TCKT-SARAH2024</div>
+                    <div class="qr-code" id="qr-TCKT-SARAH2024"></div>
+                    <div class="ticket-info">
+                        <strong>Sarah Brown</strong><br>
+                        sarah.brown@example.com<br>
+                        Quantity: 2<br>
+                        <span class="status redeemed">
+                            Already Redeemed
+                        </span>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+
+    <script>
+        // Generate QR codes for each ticket
+        
+            QRCode.toCanvas(document.getElementById('qr-TCKT-JANE2024'), 'TCKT-JANE2024', {
+                width: 150,
+                margin: 1,
+                color: {
+                    dark: '#e91e63',
+                    light: '#ffffff'
+                }
+            }, function (error) {
+                if (error) console.error('QR Code generation error for TCKT-JANE2024:', error);
+            });
+        
+            QRCode.toCanvas(document.getElementById('qr-TCKT-JOHN2024'), 'TCKT-JOHN2024', {
+                width: 150,
+                margin: 1,
+                color: {
+                    dark: '#e91e63',
+                    light: '#ffffff'
+                }
+            }, function (error) {
+                if (error) console.error('QR Code generation error for TCKT-JOHN2024:', error);
+            });
+        
+            QRCode.toCanvas(document.getElementById('qr-TCKT-MARY2024'), 'TCKT-MARY2024', {
+                width: 150,
+                margin: 1,
+                color: {
+                    dark: '#e91e63',
+                    light: '#ffffff'
+                }
+            }, function (error) {
+                if (error) console.error('QR Code generation error for TCKT-MARY2024:', error);
+            });
+        
+            QRCode.toCanvas(document.getElementById('qr-TCKT-BOB2024'), 'TCKT-BOB2024', {
+                width: 150,
+                margin: 1,
+                color: {
+                    dark: '#e91e63',
+                    light: '#ffffff'
+                }
+            }, function (error) {
+                if (error) console.error('QR Code generation error for TCKT-BOB2024:', error);
+            });
+        
+            QRCode.toCanvas(document.getElementById('qr-TCKT-SARAH2024'), 'TCKT-SARAH2024', {
+                width: 150,
+                margin: 1,
+                color: {
+                    dark: '#e91e63',
+                    light: '#ffffff'
+                }
+            }, function (error) {
+                if (error) console.error('QR Code generation error for TCKT-SARAH2024:', error);
+            });
+        
+    </script>
+</body>
+</html>
