@@ -27,7 +27,7 @@ CREATE TABLE tickets (
   currency TEXT,               -- NEW
   payment_status TEXT,         -- NEW
   address JSONB,               -- NEW
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  issued_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 ```
@@ -71,7 +71,7 @@ Based on your example payload, the function will extract:
     postal_code: "83616",
     state: null
   },
-  created_at: "2025-01-30T20:00:00.000Z"
+  issued_at: "2025-01-30T20:00:00.000Z"
 }
 ```
 

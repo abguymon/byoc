@@ -138,8 +138,7 @@ export const POST: APIRoute = async ({ request }) => {
             payment_status: ticket.payment_status,
             address: ticket.address,
             redeemed_at: ticket.redeemed_at,
-            created_at: ticket.created_at,
-            updated_at: ticket.updated_at
+            issued_at: ticket.issued_at
           }
         }),
         {
@@ -186,8 +185,7 @@ export const POST: APIRoute = async ({ request }) => {
             payment_status: ticket.payment_status,
             address: ticket.address,
             redeemed_at: ticket.redeemed_at,
-            created_at: ticket.created_at,
-            updated_at: ticket.updated_at
+            issued_at: ticket.issued_at
           }
         }),
         {

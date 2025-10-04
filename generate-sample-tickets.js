@@ -16,7 +16,7 @@ const sampleTickets = [
     lastName: "Smith",
     email: "jane.smith@example.com",
     quantity: 2,
-    created_at: new Date().toISOString(),
+    issued_at: new Date().toISOString(),
     redeemed_at: null // Not redeemed
   },
   {
@@ -25,7 +25,7 @@ const sampleTickets = [
     lastName: "Doe",
     email: "john.doe@example.com",
     quantity: 1,
-    created_at: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
+    issued_at: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
     redeemed_at: null // Not redeemed
   },
   {
@@ -34,7 +34,7 @@ const sampleTickets = [
     lastName: "Johnson", 
     email: "mary.johnson@example.com",
     quantity: 3,
-    created_at: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
+    issued_at: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
     redeemed_at: new Date().toISOString() // Already redeemed
   },
   {
@@ -43,7 +43,7 @@ const sampleTickets = [
     lastName: "Wilson",
     email: "bob.wilson@example.com", 
     quantity: 1,
-    created_at: new Date(Date.now() - 259200000).toISOString(), // 3 days ago
+    issued_at: new Date(Date.now() - 259200000).toISOString(), // 3 days ago
     redeemed_at: null // Not redeemed
   },
   {
@@ -52,7 +52,7 @@ const sampleTickets = [
     lastName: "Brown",
     email: "sarah.brown@example.com",
     quantity: 2,
-    created_at: new Date(Date.now() - 345600000).toISOString(), // 4 days ago
+    issued_at: new Date(Date.now() - 345600000).toISOString(), // 4 days ago
     redeemed_at: new Date(Date.now() - 86400000).toISOString() // Redeemed yesterday
   }
 ];

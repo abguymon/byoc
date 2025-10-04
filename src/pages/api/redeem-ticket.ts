@@ -132,8 +132,7 @@ export const POST: APIRoute = async ({ request }) => {
       const { data: updatedTicket, error: updateError } = await supabase
         .from('tickets')
         .update({
-          redeemed_at: now,
-          updated_at: now
+          redeemed_at: now
         })
         .eq('code', cleanCode)
         .select()
@@ -176,8 +175,7 @@ export const POST: APIRoute = async ({ request }) => {
             payment_status: updatedTicket.payment_status,
             address: updatedTicket.address,
             redeemed_at: updatedTicket.redeemed_at,
-            created_at: updatedTicket.created_at,
-            updated_at: updatedTicket.updated_at
+            issued_at: updatedTicket.issued_at
           }
         }),
         {
@@ -252,8 +250,7 @@ export const POST: APIRoute = async ({ request }) => {
             payment_status: updatedTicket.payment_status,
             address: updatedTicket.address,
             redeemed_at: updatedTicket.redeemed_at,
-            created_at: updatedTicket.created_at,
-            updated_at: updatedTicket.updated_at
+            issued_at: updatedTicket.issued_at
           }
         }),
         {

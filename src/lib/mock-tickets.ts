@@ -14,7 +14,7 @@ export const mockTickets = [
     payment_status: "paid",
     address: null,
     redeemed_at: null,
-    created_at: new Date().toISOString(),
+    issued_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
   },
   {
@@ -31,7 +31,7 @@ export const mockTickets = [
     payment_status: "paid",
     address: null,
     redeemed_at: null,
-    created_at: new Date().toISOString(),
+    issued_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
   },
   {
@@ -48,7 +48,7 @@ export const mockTickets = [
     payment_status: "paid",
     address: null,
     redeemed_at: new Date().toISOString(),
-    created_at: new Date(Date.now() - 172800000).toISOString(),
+    issued_at: new Date(Date.now() - 172800000).toISOString(),
     updated_at: new Date().toISOString()
   },
   {
@@ -65,7 +65,7 @@ export const mockTickets = [
     payment_status: "paid",
     address: null,
     redeemed_at: null,
-    created_at: new Date(Date.now() - 259200000).toISOString(),
+    issued_at: new Date(Date.now() - 259200000).toISOString(),
     updated_at: new Date().toISOString()
   },
   {
@@ -82,7 +82,7 @@ export const mockTickets = [
     payment_status: "paid",
     address: null,
     redeemed_at: new Date(Date.now() - 86400000).toISOString(),
-    created_at: new Date(Date.now() - 345600000).toISOString(),
+    issued_at: new Date(Date.now() - 345600000).toISOString(),
     updated_at: new Date().toISOString()
   }
 ];
