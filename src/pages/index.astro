@@ -200,7 +200,7 @@ import { Image } from 'astro:assets';
               Purchase your ticket now and secure your spot at the event!
             </p>
             <a
-              href="https://buy.stripe.com/5kQbJ0eOi0dpgaN30igA800"
+              href={import.meta.env.STRIPE_CHECKOUT_URL || "#"}
               target="_blank"
               rel="noopener noreferrer"
               class="inline-block bg-byoc-pink text-white px-6 py-3 rounded-lg font-sans font-semibold hover:bg-opacity-90 transition-colors text-sm"
@@ -770,7 +770,9 @@ import { Image } from 'astro:assets';
           }
 
           // Apply transform
-          gallery.style.transform = `translateX(-${position}px)`;
+          if (gallery) {
+            (gallery as HTMLElement).style.transform = `translateX(-${position}px)`;
+          }
           requestAnimationFrame(smoothScroll);
         }
 
