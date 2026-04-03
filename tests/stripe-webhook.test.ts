@@ -2,6 +2,12 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { handler } from '../netlify/functions/stripe-webhook';
 
 // Mock dependencies
+vi.mock('resend', () => ({
+  Resend: vi.fn(function () {
+    return { emails: { send: vi.fn().mockResolvedValue({ data: { id: 'email_test_123' } }) } };
+  })
+}));
+
 vi.mock('@supabase/supabase-js', () => ({
   createClient: vi.fn(() => ({
     from: vi.fn(() => ({
@@ -11,7 +17,7 @@ vi.mock('@supabase/supabase-js', () => ({
 }));
 
 vi.mock('stripe', () => ({
-  default: vi.fn(() => ({
+  default: vi.fn(function () { return {
     webhooks: {
       constructEvent: vi.fn((payload, signature, secret) => {
         // Throw error for invalid signatures
@@ -61,7 +67,7 @@ vi.mock('stripe', () => ({
         })
       }
     }
-  }))
+  }; })
 }));
 
 describe('Stripe Webhook Handler', () => {

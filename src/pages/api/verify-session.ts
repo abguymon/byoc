@@ -1,79 +1,21 @@
 import type { APIRoute } from 'astro';
+import { verifySessionToken } from '../../lib/session.js';
+import { jsonResponse } from '../../lib/response.js';
 
 export const GET: APIRoute = async ({ request }) => {
-  try {
-    // Get session token from cookie
-    const cookieHeader = request.headers.get('cookie');
-    const sessionToken = cookieHeader
-      ?.split(';')
-      .find(c => c.trim().startsWith('staff_session='))
-      ?.split('=')[1];
+  const cookie = request.headers.get('cookie');
+  const token = cookie
+    ?.split(';')
+    .find(c => c.trim().startsWith('staff_session='))
+    ?.split('=')[1];
 
-    if (!sessionToken) {
-      return new Response(
-        JSON.stringify({ authenticated: false }),
-        {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-    }
+  if (!token) return jsonResponse({ authenticated: false });
 
-    try {
-      // Decode and verify session token
-      const sessionData = JSON.parse(atob(sessionToken));
-      
-      // Check if session is expired
-      if (sessionData.expires < Date.now()) {
-        return new Response(
-          JSON.stringify({ authenticated: false, expired: true }),
-          {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-          }
-        );
-      }
+  const staffPassword = import.meta.env.STAFF_PASSWORD;
+  if (!staffPassword) return jsonResponse({ authenticated: false });
 
-      // Check if session is valid
-      if (!sessionData.authenticated) {
-        return new Response(
-          JSON.stringify({ authenticated: false }),
-          {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-          }
-        );
-      }
+  const session = verifySessionToken(token, staffPassword);
+  if (!session) return jsonResponse({ authenticated: false });
 
-      return new Response(
-        JSON.stringify({ 
-          authenticated: true,
-          expires: sessionData.expires
-        }),
-        {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-
-    } catch (decodeError) {
-      return new Response(
-        JSON.stringify({ authenticated: false }),
-        {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-    }
-
-  } catch (error) {
-    console.error('Unexpected error in verify-session:', error);
-    return new Response(
-      JSON.stringify({ error: 'Internal server error' }),
-      {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
-  }
+  return jsonResponse({ authenticated: true, expires: session.expires });
 };

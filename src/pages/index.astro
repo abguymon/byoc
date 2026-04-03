@@ -92,12 +92,20 @@ import { Image } from 'astro:assets';
     />
 
     <style>
-      .gallery-scroll {
-        display: flex;
+      @keyframes marquee {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
       }
 
-      .gallery-scroll .gallery-slide {
-        flex-shrink: 0;
+      .gallery-track {
+        display: flex;
+        gap: 1rem;
+        width: max-content;
+        animation: marquee 20s linear infinite;
+      }
+
+      .gallery-track:hover {
+        animation-play-state: paused;
       }
     </style>
 	</head>
@@ -230,14 +238,24 @@ import { Image } from 'astro:assets';
 
       <!-- Image Gallery Section -->
       <div class="py-12 overflow-hidden">
-        <div class="gallery-scroll">
-          <!-- First set of images -->
-          <!-- Gallery image 1 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
+        <div class="gallery-track">
+          <!-- Images (duplicated once for seamless CSS loop) -->
+          {[
+            { src: "/cake1.JPG", alt: "Pink cake with fruit decoration" },
+            { src: "/cake2.JPG", alt: "Tent event setup with desserts" },
+            { src: "/cake3.JPG", alt: "Chalkboard sign with cake drawing" },
+            { src: "/cake4.JPG", alt: "Dessert table with various baked goods" },
+            { src: "/cake5.JPG", alt: "People gathering at the cake event" },
+            { src: "/cake1.JPG", alt: "Pink cake with fruit decoration" },
+            { src: "/cake2.JPG", alt: "Tent event setup with desserts" },
+            { src: "/cake3.JPG", alt: "Chalkboard sign with cake drawing" },
+            { src: "/cake4.JPG", alt: "Dessert table with various baked goods" },
+            { src: "/cake5.JPG", alt: "People gathering at the cake event" },
+          ].map(({ src, alt }) => (
+            <div class="w-48 h-48 flex-shrink-0 overflow-hidden">
               <Image
-                src="/cake1.JPG"
-                alt="Pink cake with fruit decoration"
+                src={src}
+                alt={alt}
                 width={384}
                 height={384}
                 class="w-full h-full object-cover"
@@ -245,219 +263,7 @@ import { Image } from 'astro:assets';
                 quality={90}
               />
             </div>
-          </div>
-
-          <!-- Gallery image 2 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake2.JPG"
-                alt="Tent event setup with desserts"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 3 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake3.JPG"
-                alt="Chalkboard sign with cake drawing"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 4 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake4.JPG"
-                alt="Dessert table with various baked goods"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 5 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake5.JPG"
-                alt="People gathering at the cake event"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Duplicate set for seamless loop -->
-          <!-- Gallery image 1 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake1.JPG"
-                alt="Pink cake with fruit decoration"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 2 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake2.JPG"
-                alt="Tent event setup with desserts"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 3 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake3.JPG"
-                alt="Chalkboard sign with cake drawing"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 4 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake4.JPG"
-                alt="Dessert table with various baked goods"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 5 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake5.JPG"
-                alt="People gathering at the cake event"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Third set for extra smoothness -->
-          <!-- Gallery image 1 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake1.JPG"
-                alt="Pink cake with fruit decoration"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 2 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake2.JPG"
-                alt="Tent event setup with desserts"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 3 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake3.JPG"
-                alt="Chalkboard sign with cake drawing"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 4 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake4.JPG"
-                alt="Dessert table with various baked goods"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 5 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake5.JPG"
-                alt="People gathering at the cake event"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
@@ -750,38 +556,6 @@ import { Image } from 'astro:assets';
         });
       }
 
-      // Smooth infinite scroll gallery
-      function initSmoothGallery() {
-        const gallery = document.querySelector('.gallery-scroll');
-        if (!gallery) return;
-
-        let position = 0;
-        const speed = 0.5; // pixels per frame
-        const imageWidth = 192; // w-48 = 192px
-        const totalImages = 5; // number of unique images
-        const resetPoint = imageWidth * totalImages; // when to reset (960px)
-
-        function smoothScroll() {
-          position += speed;
-
-          // Reset position when we've scrolled one full set
-          if (position >= resetPoint) {
-            position = 0;
-          }
-
-          // Apply transform
-          if (gallery) {
-            (gallery as HTMLElement).style.transform = `translateX(-${position}px)`;
-          }
-          requestAnimationFrame(smoothScroll);
-        }
-
-        // Start the animation
-        smoothScroll();
-      }
-
-      // Initialize when page loads
-      document.addEventListener('DOMContentLoaded', initSmoothGallery);
     </script>
 	</body>
 </html>
