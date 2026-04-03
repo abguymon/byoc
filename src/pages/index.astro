@@ -10,19 +10,13 @@ import { Image } from 'astro:assets';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Join us for Bring Your Own Cake Club - A delicious community event in Boise, Idaho! Bring your own cake creation and sample amazing cakes from other bakers. October 4th, 2025."
-    />
-    <meta
-      name="keywords"
-      content="cake event, picnic, Boise Idaho, cake potluck, baking, community event, homemade cake, cake lovers"
+      content="Bring Your Own Cake Club is coming to Boise and Salt Lake City in Spring 2026! Bring a homemade cake, sample amazing creations from fellow bakers, and celebrate community."
     />
     <meta name="author" content="Bring Your Own Cake Club" />
     <meta
       name="robots"
       content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     />
-    <meta name="language" content="English" />
-    <meta name="revisit-after" content="7 days" />
     <meta name="theme-color" content="#E6397F" />
     <meta name="msapplication-TileColor" content="#E6397F" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,14 +26,14 @@ import { Image } from 'astro:assets';
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bringyourowncake.com/" />
-    <meta property="og:title" content="BYO Cake Club - Boise Community Event" />
+    <meta property="og:title" content="BYO Cake Club - Boise & Salt Lake City Spring 2026" />
     <meta
       property="og:description"
-      content="Join us for Bring Your Own Cake Club - A delicious community event in Boise, Idaho! Bring your own cake creation and sample amazing cakes from other bakers."
+      content="Bring Your Own Cake Club is coming to Boise and Salt Lake City in Spring 2026! Bring a homemade cake, sample amazing creations from fellow bakers, and celebrate community."
     />
     <meta
       property="og:image"
-      content="https://bringyourowncake.com/og-image.jpg"
+      content="https://bringyourowncake.com/og-image.svg"
     />
     <meta property="og:site_name" content="BYO Cake Club" />
     <meta property="og:locale" content="en_US" />
@@ -49,21 +43,21 @@ import { Image } from 'astro:assets';
     <meta property="twitter:url" content="https://bringyourowncake.com/" />
     <meta
       property="twitter:title"
-      content="BYO Cake Club - Boise Community Event"
+      content="BYO Cake Club - Boise & Salt Lake City Spring 2026"
     />
     <meta
       property="twitter:description"
-      content="Join us for Bring Your Own Cake Club - A delicious community event in Boise, Idaho! Bring your own cake creation and sample amazing cakes from other bakers."
+      content="Bring Your Own Cake Club is coming to Boise and Salt Lake City in Spring 2026! Bring a homemade cake, sample amazing creations from fellow bakers, and celebrate community."
     />
     <meta
       property="twitter:image"
-      content="https://bringyourowncake.com/twitter-image.jpg"
+      content="https://bringyourowncake.com/twitter-image.svg"
     />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://bringyourowncake.com/" />
 
-    <title>BYO Cake Club - Boise Community Event | October 4th, 2025</title>
+    <title>BYO Cake Club - Boise & Salt Lake City | Coming Spring 2026</title>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GQSHYPQM7"
@@ -86,10 +80,13 @@ import { Image } from 'astro:assets';
       });
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="apple-touch-icon" href="/byocakeclub.png" />
 
     <style>
       @keyframes marquee {
@@ -115,9 +112,9 @@ import { Image } from 'astro:assets';
       <div class="relative">
         <!-- Small header text -->
         <div class="pt-8 px-6">
-          <p class="text-byoc-pink text-xl font-sans uppercase tracking-wider">
+          <h1 class="text-byoc-pink text-xl font-sans uppercase tracking-wider">
             BRING YOUR OWN CAKE CLUB
-          </p>
+          </h1>
         </div>
 
         <!-- Main image and logo section -->
@@ -159,16 +156,16 @@ import { Image } from 'astro:assets';
       <div
         class="px-4 sm:px-8 lg:px-12 pt-16 sm:pt-24 lg:pt-36 pb-16 text-center"
       >
-        <h2
+        <p
           class="text-byoc-pink text-base sm:text-lg font-sans uppercase tracking-wider mb-6"
         >
-          NEXT EVENT:
-        </h2>
-        <h3
+          COMING SPRING 2026
+        </p>
+        <h2
           class="text-byoc-pink text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-12 px-4"
         >
-          OCTOBER 4TH 2025
-        </h3>
+          BOISE &amp; SALT LAKE CITY
+        </h2>
 
         <p
           class="text-byoc-pink text-sm sm:text-base lg:text-lg font-sans uppercase tracking-wider mb-8 px-4"
@@ -201,9 +198,9 @@ import { Image } from 'astro:assets';
 
           <!-- Ticket Purchase Section (always visible) -->
           <div id="payment-section" class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto mt-8">
-            <h3 class="text-byoc-pink text-lg font-sans font-semibold mb-4">
+            <h2 class="text-byoc-pink text-lg font-sans font-semibold mb-4">
               Ready to Join Us?
-            </h3>
+            </h2>
             <p class="text-gray-700 text-sm mb-4">
               Purchase your ticket now and secure your spot at the event!
             </p>
@@ -213,7 +210,7 @@ import { Image } from 'astro:assets';
               rel="noopener noreferrer"
               class="inline-block bg-byoc-pink text-white px-6 py-3 rounded-lg font-sans font-semibold hover:bg-opacity-90 transition-colors text-sm"
             >
-              Buy Ticket - $5
+              Buy Ticket - $10
             </a>
             <p class="text-gray-500 text-xs mt-3">
               Secure checkout powered by Stripe
@@ -246,22 +243,21 @@ import { Image } from 'astro:assets';
             { src: "/cake3.JPG", alt: "Chalkboard sign with cake drawing" },
             { src: "/cake4.JPG", alt: "Dessert table with various baked goods" },
             { src: "/cake5.JPG", alt: "People gathering at the cake event" },
-            { src: "/cake1.JPG", alt: "Pink cake with fruit decoration" },
-            { src: "/cake2.JPG", alt: "Tent event setup with desserts" },
-            { src: "/cake3.JPG", alt: "Chalkboard sign with cake drawing" },
-            { src: "/cake4.JPG", alt: "Dessert table with various baked goods" },
-            { src: "/cake5.JPG", alt: "People gathering at the cake event" },
           ].map(({ src, alt }) => (
             <div class="w-48 h-48 flex-shrink-0 overflow-hidden">
-              <Image
-                src={src}
-                alt={alt}
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
+              <Image src={src} alt={alt} width={384} height={384} class="w-full h-full object-cover" loading="lazy" quality={90} />
+            </div>
+          ))}
+          {/* Duplicate set for CSS marquee loop — hidden from assistive technology */}
+          {[
+            { src: "/cake1.JPG" },
+            { src: "/cake2.JPG" },
+            { src: "/cake3.JPG" },
+            { src: "/cake4.JPG" },
+            { src: "/cake5.JPG" },
+          ].map(({ src }) => (
+            <div class="w-48 h-48 flex-shrink-0 overflow-hidden" aria-hidden="true">
+              <Image src={src} alt="" width={384} height={384} class="w-full h-full object-cover" loading="lazy" quality={90} />
             </div>
           ))}
         </div>
@@ -271,11 +267,11 @@ import { Image } from 'astro:assets';
       <div class="px-6 lg:px-12 py-16 space-y-16">
         <!-- WHO ARE WE? -->
         <div>
-          <h3
+          <h2
             class="text-byoc-pink text-lg font-sans uppercase tracking-wider mb-6"
           >
             WHO ARE WE?
-          </h3>
+          </h2>
           <p
             class="text-byoc-text-pink text-base font-sans leading-relaxed max-w-4xl"
           >
@@ -289,11 +285,11 @@ import { Image } from 'astro:assets';
 
         <!-- WHAT TO EXPECT -->
         <div>
-          <h3
+          <h2
             class="text-byoc-pink text-lg font-sans uppercase tracking-wider mb-6"
           >
             WHAT TO EXPECT
-          </h3>
+          </h2>
           <p
             class="text-byoc-text-pink text-base font-sans leading-relaxed max-w-4xl"
           >
@@ -305,35 +301,37 @@ import { Image } from 'astro:assets';
 
         <!-- EVENT DETAILS -->
         <div>
-          <h3
+          <h2
             class="text-byoc-pink text-lg font-sans uppercase tracking-wider mb-6"
           >
             EVENT DETAILS
-          </h3>
+          </h2>
           <p
             class="text-byoc-text-pink text-base font-sans leading-relaxed mb-4 max-w-4xl"
           >
-            Our first community potluck will be October 4th from 11:00 AM to 1:00 PM at Camel's Back
-            Park.
+            We're returning to Boise for another celebration of homemade cakes — and this spring we're also launching for the first time in Salt Lake City!
           </p>
+          <ul class="text-byoc-text-pink text-base font-sans leading-relaxed mb-4 max-w-4xl space-y-2 list-none">
+            <li><span class="text-byoc-pink font-bold">Boise, ID</span> — Camel's Back Park, Spring 2026</li>
+            <li><span class="text-byoc-pink font-bold">Salt Lake City, UT</span> — Sugar House Park, Spring 2026 <span class="italic">(brand new!)</span></li>
+          </ul>
           <p
             class="text-byoc-text-pink text-base font-sans leading-relaxed max-w-4xl"
           >
-            Send us an email at
-            <span class="text-byoc-pink font-bold text-lg"
-              >bringyourowncake@gmail.com</span
-            >
-            for the full invite and details.
+            Sign up above to receive the full invite and details once dates are confirmed, or email us at{' '}
+            <a href="mailto:bringyourowncake@gmail.com" class="text-byoc-pink font-bold text-lg hover:underline">
+              bringyourowncake@gmail.com
+            </a>.
           </p>
         </div>
 
         <!-- WHO IS INVITED -->
         <div>
-          <h3
+          <h2
             class="text-byoc-pink text-lg font-sans uppercase tracking-wider mb-6"
           >
             WHO IS INVITED
-          </h3>
+          </h2>
           <p
             class="text-byoc-text-pink text-base font-sans leading-relaxed max-w-4xl"
           >
@@ -350,17 +348,17 @@ import { Image } from 'astro:assets';
 
         <!-- PRICING -->
         <div>
-          <h3
+          <h2
             class="text-byoc-pink text-lg font-sans uppercase tracking-wider mb-6"
           >
             PRICING
-          </h3>
+          </h2>
           <p
             class="text-byoc-text-pink text-base font-sans leading-relaxed max-w-4xl mb-4"
           >
             We want this event to be accessible to anyone interested so the
             ticket price is only <span class="text-byoc-pink font-bold text-lg"
-              >$5 per person</span
+              >$10 per person</span
             >.
           </p>
           <p
@@ -378,48 +376,79 @@ import { Image } from 'astro:assets';
           Made with love and lots of sugar
         </p>
         <p class="text-byoc-text-pink text-sm mt-3 font-sans">
-          © 2025 BYO Cake Club
+          © 2026 BYO Cake Club
         </p>
       </footer>
     </div>
 
     <!-- Structured Data -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Event",
-        "name": "BYO Cake Club - Boise Community Event",
-        "description": "A community potluck where cake enthusiasts gather to share their homemade creations. Bring your own delicious cake creation and sample amazing cakes from other bakers!",
-        "startDate": "2025-10-04T11:00:00-07:00",
-        "endDate": "2025-10-04T15:00:00-07:00",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "location": {
-          "@type": "Place",
-          "name": "Camel's Back Park",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Boise",
-            "addressRegion": "ID",
-            "addressCountry": "US"
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "BYO Cake Club - Boise",
+          "description": "A community potluck where cake enthusiasts gather to share their homemade creations. Bring your own delicious cake and sample amazing creations from fellow bakers!",
+          "startDate": "2026-04-01",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "location": {
+            "@type": "Place",
+            "name": "Camel's Back Park",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Boise",
+              "addressRegion": "ID",
+              "addressCountry": "US"
+            }
+          },
+          "organizer": {
+            "@type": "Organization",
+            "name": "BYO Cake Club",
+            "url": "https://bringyourowncake.com"
+          },
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock",
+            "price": "10",
+            "priceCurrency": "USD",
+            "url": "https://bringyourowncake.com",
+            "description": "$10 per person covers rentals, venue, utensils, and to-go boxes"
           }
         },
-        "organizer": {
-          "@type": "Organization",
-          "name": "BYO Cake Club"
-        },
-        "offers": {
-          "@type": "Offer",
-          "availability": "https://schema.org/InStock",
-          "price": "5",
-          "priceCurrency": "USD",
-          "description": "$5 per person covers rentals, venue, utensils, and to-go boxes"
-        },
-        "audience": {
-          "@type": "Audience",
-          "audienceType": "Cake enthusiasts and bakers"
+        {
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "BYO Cake Club - Salt Lake City",
+          "description": "A community potluck where cake enthusiasts gather to share their homemade creations. Bring your own delicious cake and sample amazing creations from fellow bakers!",
+          "startDate": "2026-05-01",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "location": {
+            "@type": "Place",
+            "name": "Sugar House Park",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Salt Lake City",
+              "addressRegion": "UT",
+              "addressCountry": "US"
+            }
+          },
+          "organizer": {
+            "@type": "Organization",
+            "name": "BYO Cake Club",
+            "url": "https://bringyourowncake.com"
+          },
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock",
+            "price": "10",
+            "priceCurrency": "USD",
+            "url": "https://bringyourowncake.com",
+            "description": "$10 per person covers rentals, venue, utensils, and to-go boxes"
+          }
         }
-      }
+      ]
     </script>
 
     <script>
@@ -466,59 +495,29 @@ import { Image } from 'astro:assets';
             signupButton.disabled = true;
 
             try {
-              // Send welcome email using Resend
               const controller = new AbortController();
-              const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+              const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-              console.log('Sending request to /api/send-welcome-email...');
               const response = await fetch('/api/send-welcome-email', {
                 method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                   email: email,
-                  event_date: 'October 4th, 2025',
-                  event_location: "Camel's Back Park",
-                  event_time: '11:00 AM - 1:00 PM',
+                  event_date: 'Spring 2026',
+                  event_location: 'Boise, ID and Salt Lake City, UT',
+                  event_time: 'TBD',
                   contact_email: 'bringyourowncake@gmail.com',
-                  ticket_price: '$5 per person',
+                  ticket_price: '$10 per person',
                 }),
                 signal: controller.signal,
               });
 
               clearTimeout(timeoutId);
 
-              console.log('Response status:', response.status);
-              console.log('Response ok:', response.ok);
-              console.log('Response headers:', Object.fromEntries(response.headers.entries()));
-
               if (response.ok) {
-                try {
-                  const result = await response.json();
-                  console.log('✅ Welcome email sent successfully:', result);
-                  
-                  // Show success message and hide form (keep payment section visible)
-                  form.style.display = 'none';
-                  successMessage.style.display = 'block';
-                } catch (parseError) {
-                  console.error('❌ Failed to parse response:', parseError);
-                  console.log('Response text:', await response.text());
-                  
-                  // Still show success if response was ok but couldn't parse JSON
-                  form.style.display = 'none';
-                  successMessage.style.display = 'block';
-                }
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
               } else {
-                try {
-                  const errorData = await response.json();
-                  console.error('❌ Failed to send email:', errorData);
-                } catch (parseError) {
-                  console.error('❌ Failed to parse error response:', parseError);
-                  const errorText = await response.text();
-                  console.error('Error response text:', errorText);
-                }
-                
                 // Show error state
                 signupButton.textContent = 'ERROR - TRY AGAIN';
                 signupButton.classList.add('bg-red-500');
@@ -531,7 +530,6 @@ import { Image } from 'astro:assets';
               }
 
             } catch (error) {
-              console.error('❌ Error sending email:', error);
 
               // Show error state
               signupButton.textContent = 'ERROR - TRY AGAIN';
