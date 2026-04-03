@@ -48,6 +48,8 @@ This is an **Astro SSR app** (server-side rendered, not static) deployed on Netl
 | `SUPABASE_URL` | Supabase project URL |
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key |
 | `RESEND_API_KEY` | Resend email API key |
+| `RESEND_AUDIENCE_BOISE_ID` | (Optional) Resend audience ID for Boise signups |
+| `RESEND_AUDIENCE_SLC_ID` | (Optional) Resend audience ID for SLC signups |
 | `MAIL_FROM` | Sender email address |
 | `STAFF_PASSWORD` | Password for staff portal (use `cake2024` locally) |
 

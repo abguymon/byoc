@@ -177,23 +177,41 @@ import { Image } from 'astro:assets';
         <div id="signup-container" class="max-w-lg mx-auto px-4">
           <form
             id="signup-form"
-            class="flex flex-col sm:flex-row gap-4 sm:gap-6"
+            class="flex flex-col gap-4"
           >
-            <input
-              type="email"
-              name="email"
-              id="email-input"
-              placeholder="EMAIL ADDRESS"
-              required
-              class="flex-1 px-4 sm:px-6 py-3 sm:py-4 border border-gray-300 rounded-none text-sm sm:text-base font-sans placeholder-gray-400 focus:outline-none focus:border-byoc-pink"
-            />
-            <button
-              type="submit"
-              id="signup-button"
-              class="bg-byoc-pink text-white px-8 sm:px-12 py-3 sm:py-4 text-sm sm:text-base font-sans uppercase tracking-wider hover:bg-opacity-90 transition-colors"
-            >
-              SIGN UP
-            </button>
+            <!-- City selection -->
+            <div class="flex gap-3 justify-center">
+              <label class="cursor-pointer">
+                <input type="radio" name="city" value="boise" class="peer sr-only" required />
+                <span class="block px-5 py-2 border border-byoc-pink text-byoc-pink text-sm font-sans uppercase tracking-wider transition-colors peer-checked:bg-byoc-pink peer-checked:text-white">
+                  Boise, ID
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="city" value="slc" class="peer sr-only" />
+                <span class="block px-5 py-2 border border-byoc-pink text-byoc-pink text-sm font-sans uppercase tracking-wider transition-colors peer-checked:bg-byoc-pink peer-checked:text-white">
+                  Salt Lake City, UT
+                </span>
+              </label>
+            </div>
+            <!-- Email + submit -->
+            <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+              <input
+                type="email"
+                name="email"
+                id="email-input"
+                placeholder="EMAIL ADDRESS"
+                required
+                class="flex-1 px-4 sm:px-6 py-3 sm:py-4 border border-gray-300 rounded-none text-sm sm:text-base font-sans placeholder-gray-400 focus:outline-none focus:border-byoc-pink"
+              />
+              <button
+                type="submit"
+                id="signup-button"
+                class="bg-byoc-pink text-white px-8 sm:px-12 py-3 sm:py-4 text-sm sm:text-base font-sans uppercase tracking-wider hover:bg-opacity-90 transition-colors"
+              >
+                SIGN UP
+              </button>
+            </div>
           </form>
 
           <!-- Ticket Purchase Section (always visible) -->
@@ -466,13 +484,9 @@ import { Image } from 'astro:assets';
       });
 
       // Handle form submission inline
-      const form = document.getElementById('signup-form');
-      const emailInput = document.getElementById(
-        'email-input'
-      ) as HTMLInputElement;
-      const signupButton = document.getElementById(
-        'signup-button'
-      ) as HTMLButtonElement;
+      const form = document.getElementById('signup-form') as HTMLFormElement;
+      const emailInput = document.getElementById('email-input') as HTMLInputElement;
+      const signupButton = document.getElementById('signup-button') as HTMLButtonElement;
       const successMessage = document.getElementById('success-message');
 
       if (form && emailInput && signupButton && successMessage) {
@@ -480,6 +494,17 @@ import { Image } from 'astro:assets';
           e.preventDefault();
 
           const email = emailInput.value;
+          const city = (form.querySelector('input[name="city"]:checked') as HTMLInputElement | null)?.value;
+
+          if (!city) {
+            signupButton.textContent = 'SELECT A CITY';
+            signupButton.classList.add('bg-red-500');
+            setTimeout(() => {
+              signupButton.textContent = 'SIGN UP';
+              signupButton.classList.remove('bg-red-500');
+            }, 2000);
+            return;
+          }
 
           if (email && email.includes('@')) {
             // Track form submission
@@ -487,6 +512,7 @@ import { Image } from 'astro:assets';
               gtag('event', 'form_submit', {
                 event_category: 'engagement',
                 event_label: 'email_signup',
+                event_city: city,
               });
             }
 
@@ -502,10 +528,8 @@ import { Image } from 'astro:assets';
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                  email: email,
-                  event_date: 'Spring 2026',
-                  event_location: 'Boise, ID and Salt Lake City, UT',
-                  event_time: 'TBD',
+                  email,
+                  city,
                   contact_email: 'bringyourowncake@gmail.com',
                   ticket_price: '$10 per person',
                 }),
