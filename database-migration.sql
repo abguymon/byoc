@@ -18,3 +18,11 @@ WHERE redeemed_at IS NULL;
 
 -- Optional: Add a comment to document the field
 COMMENT ON COLUMN tickets.redeemed_at IS 'Timestamp when the ticket was redeemed/used at the event';
+
+-- Add city column for multi-city events (Spring 2026: boise, slc)
+ALTER TABLE tickets
+ADD COLUMN IF NOT EXISTS city TEXT;
+
+COMMENT ON COLUMN tickets.city IS 'Event city the ticket is for (boise, slc)';
+
+CREATE INDEX IF NOT EXISTS idx_tickets_city ON tickets(city);

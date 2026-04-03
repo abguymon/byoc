@@ -46,6 +46,14 @@ export const handler = async (event: NetlifyEvent) => {
   const session = stripeEvent.data.object as Stripe.Checkout.Session;
   const email = session.customer_details?.email ?? null;
 
+  // Identify city from which Payment Link was used
+  const paymentLinkId = typeof session.payment_link === 'string' ? session.payment_link : session.payment_link?.id ?? null;
+  let city: string | null = null;
+  if (paymentLinkId) {
+    if (paymentLinkId === process.env.STRIPE_PAYMENT_LINK_BOISE) city = 'boise';
+    else if (paymentLinkId === process.env.STRIPE_PAYMENT_LINK_SLC) city = 'slc';
+  }
+
   // Extract name from custom fields, fall back to customer_details.name
   let firstName: string | null = null;
   let lastName: string | null = null;
@@ -81,6 +89,7 @@ export const handler = async (event: NetlifyEvent) => {
       last_name: lastName,
       quantity,
       code,
+      city,
     },
     { onConflict: "stripe_payment_intent" }
   );

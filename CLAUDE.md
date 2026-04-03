@@ -43,6 +43,10 @@ This is an **Astro SSR app** (server-side rendered, not static) deployed on Netl
 | Variable | Purpose |
 |---|---|
 | `STRIPE_SECRET_KEY` | Stripe API key |
+| `STRIPE_CHECKOUT_URL_BOISE` | Stripe Payment Link URL for Boise event |
+| `STRIPE_CHECKOUT_URL_SLC` | Stripe Payment Link URL for SLC event |
+| `STRIPE_PAYMENT_LINK_BOISE` | Stripe Payment Link ID (`plink_xxx`) for Boise — used by webhook to tag tickets with city |
+| `STRIPE_PAYMENT_LINK_SLC` | Stripe Payment Link ID (`plink_xxx`) for SLC — used by webhook to tag tickets with city |
 | `STRIPE_WEBHOOK_SECRET` | Production webhook signing secret |
 | `STRIPE_WEBHOOK_SECRET_DEV` | (Optional) Dev webhook signing secret |
 | `SUPABASE_URL` | Supabase project URL |

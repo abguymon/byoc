@@ -1,6 +1,6 @@
 ---
-// Set the page title and metadata
 import { Image } from 'astro:assets';
+export const prerender = true;
 ---
 
 <html lang="en">
@@ -223,13 +223,18 @@ import { Image } from 'astro:assets';
               Purchase your ticket now and secure your spot at the event!
             </p>
             <a
-              href={import.meta.env.STRIPE_CHECKOUT_URL || "#"}
+              id="buy-ticket-link"
+              href="#"
+              data-url-boise={import.meta.env.STRIPE_CHECKOUT_URL_BOISE || "#"}
+              data-url-slc={import.meta.env.STRIPE_CHECKOUT_URL_SLC || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-block bg-byoc-pink text-white px-6 py-3 rounded-lg font-sans font-semibold hover:bg-opacity-90 transition-colors text-sm"
+              class="inline-block bg-gray-300 text-gray-500 px-6 py-3 rounded-lg font-sans font-semibold text-sm cursor-not-allowed"
+              aria-disabled="true"
             >
               Buy Ticket - $10
             </a>
+            <p id="buy-ticket-hint" class="text-gray-400 text-xs mt-2 italic">Select a city above to continue</p>
             <p class="text-gray-500 text-xs mt-3">
               Secure checkout powered by Stripe
             </p>
@@ -481,6 +486,20 @@ import { Image } from 'astro:assets';
             fatal: false,
           });
         }
+      });
+
+      // Update buy ticket link when city changes
+      const buyLink = document.getElementById('buy-ticket-link') as HTMLAnchorElement;
+      const buyHint = document.getElementById('buy-ticket-hint');
+      document.querySelectorAll('input[name="city"]').forEach(input => {
+        input.addEventListener('change', function () {
+          const city = (this as HTMLInputElement).value;
+          const url = city === 'boise' ? buyLink.dataset.urlBoise : buyLink.dataset.urlSlc;
+          buyLink.href = url || '#';
+          buyLink.removeAttribute('aria-disabled');
+          buyLink.className = 'inline-block bg-byoc-pink text-white px-6 py-3 rounded-lg font-sans font-semibold hover:bg-opacity-90 transition-colors text-sm';
+          if (buyHint) buyHint.style.display = 'none';
+        });
       });
 
       // Handle form submission inline

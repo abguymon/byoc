@@ -7,7 +7,7 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bringyourowncake.com',
-  output: 'server', // Enable server-side rendering for API routes
+  output: 'hybrid',
   integrations: [tailwind(), sitemap()],
   adapter: netlify(),
 });

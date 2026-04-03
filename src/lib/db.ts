@@ -16,6 +16,7 @@ export type Ticket = {
   address: unknown | null;
   redeemed_at: string | null;
   issued_at: string;
+  city: string | null;
 };
 
 const supabase = import.meta.env.SUPABASE_URL
