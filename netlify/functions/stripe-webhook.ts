@@ -101,6 +101,14 @@ export const handler = async (event: NetlifyEvent) => {
 
   if (email) {
     try {
+      await resend.contacts.create({ email, unsubscribed: false });
+    } catch (err) {
+      console.warn("Failed to add purchaser to Resend contacts:", err);
+    }
+  }
+
+  if (email) {
+    try {
       const qrCodeBuffer = await QRCode.toBuffer(code, { width: 200, margin: 2, type: "png" });
       await resend.emails.send({
         from: process.env.MAIL_FROM || "BYO Cake Club <noreply@bringyourowncake.com>",
