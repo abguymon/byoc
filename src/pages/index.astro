@@ -1,30 +1,24 @@
 ---
-// Set the page title and metadata
 import { Image } from 'astro:assets';
+export const prerender = true;
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Join us for Bring Your Own Cake Club - A delicious community event in Boise, Idaho! Bring your own cake creation and sample amazing cakes from other bakers. October 4th, 2025."
-    />
-    <meta
-      name="keywords"
-      content="cake event, picnic, Boise Idaho, cake potluck, baking, community event, homemade cake, cake lovers"
+      content="Bring Your Own Cake Club is coming to Boise and Salt Lake City in Spring 2026! Bring a homemade cake, sample amazing creations from fellow bakers, and celebrate community."
     />
     <meta name="author" content="Bring Your Own Cake Club" />
     <meta
       name="robots"
       content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     />
-    <meta name="language" content="English" />
-    <meta name="revisit-after" content="7 days" />
-    <meta name="theme-color" content="#E6397F" />
-    <meta name="msapplication-TileColor" content="#E6397F" />
+    <meta name="theme-color" content="#52634c" />
+    <meta name="msapplication-TileColor" content="#52634c" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="BYO Cake Club" />
@@ -32,42 +26,30 @@ import { Image } from 'astro:assets';
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bringyourowncake.com/" />
-    <meta property="og:title" content="BYO Cake Club - Boise Community Event" />
+    <meta property="og:title" content="BYO Cake Club - Boise & Salt Lake City Spring 2026" />
     <meta
       property="og:description"
-      content="Join us for Bring Your Own Cake Club - A delicious community event in Boise, Idaho! Bring your own cake creation and sample amazing cakes from other bakers."
+      content="Bring Your Own Cake Club is coming to Boise and Salt Lake City in Spring 2026! Bring a homemade cake, sample amazing creations from fellow bakers, and celebrate community."
     />
-    <meta
-      property="og:image"
-      content="https://bringyourowncake.com/og-image.jpg"
-    />
+    <meta property="og:image" content="https://bringyourowncake.com/DSCF2080.webp" />
     <meta property="og:site_name" content="BYO Cake Club" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://bringyourowncake.com/" />
-    <meta
-      property="twitter:title"
-      content="BYO Cake Club - Boise Community Event"
-    />
+    <meta property="twitter:title" content="BYO Cake Club - Boise & Salt Lake City Spring 2026" />
     <meta
       property="twitter:description"
-      content="Join us for Bring Your Own Cake Club - A delicious community event in Boise, Idaho! Bring your own cake creation and sample amazing cakes from other bakers."
+      content="Bring Your Own Cake Club is coming to Boise and Salt Lake City in Spring 2026! Bring a homemade cake, sample amazing creations from fellow bakers, and celebrate community."
     />
-    <meta
-      property="twitter:image"
-      content="https://bringyourowncake.com/twitter-image.jpg"
-    />
+    <meta property="twitter:image" content="https://bringyourowncake.com/DSCF2080.webp" />
 
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://bringyourowncake.com/" />
-
-    <title>BYO Cake Club - Boise Community Event | October 4th, 2025</title>
+    <title>BYO Cake Club - Boise & Salt Lake City | Coming Spring 2026</title>
 
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GQSHYPQM7"
-    ></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GQSHYPQM7"></script>
     <script>
       // @ts-ignore
       window.dataLayer = window.dataLayer || [];
@@ -77,711 +59,738 @@ import { Image } from 'astro:assets';
       }
       gtag('js', new Date());
       gtag('config', 'G-5GQSHYPQM7');
-
-      // Track Core Web Vitals
-      gtag('event', 'web_vitals', {
-        event_category: 'Web Vitals',
-        event_label: 'CLS',
-        value: Math.round(performance.now()),
-      });
     </script>
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="apple-touch-icon" href="/byocakeclub.png" />
 
     <style>
-      .gallery-scroll {
-        display: flex;
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
       }
 
-      .gallery-scroll .gallery-slide {
+      /* Scrapbook photo frame effect */
+      .scrapbook-frame {
+        position: relative;
+      }
+      .scrapbook-frame::after {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        right: -8px;
+        bottom: -8px;
+        border: 1px solid #c4c8be;
+        z-index: -1;
+        border-radius: 0.5rem;
+      }
+
+      /* Subtle linen texture overlay */
+      .linen-texture {
+        background-image: radial-gradient(#c4c8be 0.5px, transparent 0.5px);
+        background-size: 10px 10px;
+        opacity: 0.1;
+      }
+
+      /* Botanical SVG divider */
+      .botanical-divider {
+        height: 60px;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' preserveAspectRatio='none'><path d='M0 10 Q 25 0, 50 10 T 100 10' fill='none' stroke='%2352634c' stroke-width='0.5' opacity='0.3'/></svg>");
+      }
+
+      /* Gallery marquee — use margin-right (not gap) so both halves
+         are exactly equal width and the -50% loop is seamless */
+      @keyframes marquee {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+      .gallery-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 60s linear infinite;
+      }
+      .gallery-item {
+        margin-right: 1rem;
         flex-shrink: 0;
       }
     </style>
-	</head>
-  <body class="bg-byoc-teal min-h-screen">
-    <div class="max-w-7xl mx-auto">
-      <!-- Header Section -->
-      <div class="relative">
-        <!-- Small header text -->
-        <div class="pt-8 px-6">
-          <p class="text-byoc-pink text-xl font-sans uppercase tracking-wider">
-            BRING YOUR OWN CAKE CLUB
-          </p>
-        </div>
+  </head>
 
-        <!-- Main image and logo section -->
-        <div
-          class="flex items-center justify-center mt-8 sm:mt-12 gap-3 sm:gap-4 lg:gap-8 px-4"
+  <body class="bg-background text-on-background font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+
+    <!-- Navigation -->
+    <nav class="bg-[#fef9ed]/80 backdrop-blur-xl sticky top-0 z-50 transition-all duration-500">
+      <div class="flex justify-between items-center w-full px-6 sm:px-8 py-4 max-w-7xl mx-auto">
+        <a href="/" class="text-xl sm:text-2xl font-headline italic text-primary">
+          BRING YOUR OWN CAKE CLUB
+        </a>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#about" class="text-on-surface-variant font-label uppercase tracking-widest text-xs hover:text-secondary transition-colors duration-300">About</a>
+          <a href="#gallery" class="text-on-surface-variant font-label uppercase tracking-widest text-xs hover:text-secondary transition-colors duration-300">Gallery</a>
+          <a href="#faq" class="text-on-surface-variant font-label uppercase tracking-widest text-xs hover:text-secondary transition-colors duration-300">FAQ</a>
+        </div>
+        <a
+          href="#signup"
+          class="bg-primary text-on-primary px-5 py-2 rounded-lg font-label text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-all duration-300"
         >
-          <!-- Main event image -->
-          <div
-            class="w-3/5 sm:w-3/5 max-w-2xl h-[200px] sm:h-[400px] lg:h-[500px] relative flex-shrink-0"
-          >
-            <Image
-              src="/cake_head.JPG"
-              alt="BYO Cake Club main event photo"
-              width={800}
-              height={500}
-              class="w-full h-full object-cover"
-              loading="eager"
-              quality={85}
-            />
+          Join the Club
+        </a>
+      </div>
+    </nav>
+
+    <main>
+
+      <!-- Hero Section -->
+      <section class="relative min-h-[85vh] flex items-center overflow-hidden bg-surface">
+        <div class="absolute inset-0 linen-texture pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 pt-16 pb-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
+
+          <!-- Left: Text -->
+          <div class="z-10 order-2 lg:order-1">
+            <span class="inline-block px-3 py-1 bg-secondary-container text-secondary font-label text-xs tracking-widest uppercase rounded-sm mb-6">
+              Coming Spring 2026 · Boise &amp; Salt Lake City
+            </span>
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-headline text-on-background leading-tight mb-8">
+              Slice of<br /><span class="italic text-primary">Community.</span>
+            </h1>
+            <p class="text-lg text-on-surface-variant max-w-md mb-10 leading-relaxed font-light">
+              The BYOC (Bring Your Own Cake) Club is a community picnic where everyone brings their own cake to share! A potluck entirely dedicated to cake. Bakers are encouraged to bring a homemade creation to display! The more creative the better! It's a joy to see them all come together.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="#signup"
+                class="bg-primary text-on-primary px-8 py-4 rounded-lg font-label font-medium shadow-sm hover:-translate-y-0.5 transition-all duration-300 text-center"
+              >
+                Purchase Your Ticket
+              </a>
+              <a
+                href="#about"
+                class="border border-outline-variant text-secondary px-8 py-4 rounded-lg font-label font-medium hover:bg-secondary-container/30 transition-all duration-300 text-center"
+              >
+                Learn More
+              </a>
+            </div>
           </div>
 
-          <!-- Logo -->
-          <div
-            class="w-2/5 sm:w-2/5 max-w-md flex items-center justify-center flex-shrink"
+          <!-- Right: Hero Image -->
+          <div class="relative order-1 lg:order-2 flex justify-center">
+            <div class="scrapbook-frame w-full max-w-md aspect-[4/5] overflow-hidden rounded-xl">
+              <Image
+                src="/DSCF2080.webp"
+                alt="BYO Cake Club main event photo"
+                width={600}
+                height={750}
+                class="w-full h-full object-cover"
+                loading="eager"
+                quality={85}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Countdown Section -->
+      <section class="bg-surface pb-16 pt-8">
+        <div class="max-w-2xl mx-auto px-6 sm:px-8 text-center">
+          <p id="countdown-label" class="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-6">Loading...</p>
+          <div id="countdown-display" class="flex justify-center gap-6 sm:gap-10">
+            <div class="flex flex-col items-center gap-2">
+              <span id="cd-days" class="font-headline text-6xl sm:text-7xl text-on-background tabular-nums">--</span>
+              <span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Days</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <span id="cd-hours" class="font-headline text-6xl sm:text-7xl text-on-background tabular-nums">--</span>
+              <span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Hours</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <span id="cd-minutes" class="font-headline text-6xl sm:text-7xl text-on-background tabular-nums">--</span>
+              <span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Min</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <span id="cd-seconds" class="font-headline text-6xl sm:text-7xl text-on-background tabular-nums">--</span>
+              <span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Sec</span>
+            </div>
+          </div>
+          <div id="countdown-done" class="hidden">
+            <p class="font-headline text-4xl text-on-background italic">See you at the park 🎂</p>
+          </div>
+        </div>
+      </section>
+
+      <script>
+        const SLC   = new Date('2026-05-16T12:00:00-06:00').getTime();
+        const BOISE = new Date('2026-06-27T12:00:00-06:00').getTime();
+
+        const label   = document.getElementById('countdown-label');
+        const display = document.getElementById('countdown-display');
+        const done    = document.getElementById('countdown-done');
+        const days    = document.getElementById('cd-days');
+        const hours   = document.getElementById('cd-hours');
+        const minutes = document.getElementById('cd-minutes');
+        const seconds = document.getElementById('cd-seconds');
+
+        function pad(n: number) { return n.toString().padStart(2, '0'); }
+
+        function tick() {
+          const now  = Date.now();
+          let target: number;
+          let lbl: string;
+
+          if (now < SLC) {
+            target = SLC;
+            lbl = 'Until Salt Lake City · May 16th';
+          } else if (now < BOISE) {
+            target = BOISE;
+            lbl = 'Until Boise · June 27th';
+          } else {
+            display!.classList.add('hidden');
+            done!.classList.remove('hidden');
+            label!.textContent = 'Both events have passed — until next time!';
+            return;
+          }
+
+          const dist = target - now;
+          const d = Math.floor(dist / 86400000);
+          const h = Math.floor((dist % 86400000) / 3600000);
+          const m = Math.floor((dist % 3600000) / 60000);
+          const s = Math.floor((dist % 60000) / 1000);
+
+          label!.textContent   = lbl;
+          days!.textContent    = d.toString();
+          hours!.textContent   = pad(h);
+          minutes!.textContent = pad(m);
+          seconds!.textContent = pad(s);
+        }
+
+        tick();
+        setInterval(tick, 1000);
+      </script>
+
+      <!-- Event Details Section -->
+      <section class="bg-surface-container-low py-24">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-headline text-on-background mb-4">The Details</h2>
+            <div class="w-16 h-px bg-secondary mx-auto"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto divide-y md:divide-y-0 md:divide-x divide-outline-variant/30">
+            <!-- Salt Lake City -->
+            <div class="flex flex-col items-center text-center gap-6 pb-12 md:pb-0 md:pr-12">
+              <h3 class="font-headline text-2xl text-primary">Salt Lake City</h3>
+              <div class="flex flex-row gap-8">
+                <div class="flex flex-col items-center gap-2">
+                  <div class="w-12 h-12 bg-primary-fixed-dim rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-on-primary-fixed text-xl">calendar_month</span>
+                  </div>
+                  <p class="font-label uppercase tracking-widest text-xs text-on-surface-variant">When</p>
+                  <p class="text-on-background">May 16th, 2026</p>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                  <div class="w-12 h-12 bg-primary-fixed-dim rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-on-primary-fixed text-xl">location_on</span>
+                  </div>
+                  <p class="font-label uppercase tracking-widest text-xs text-on-surface-variant">Where</p>
+                  <p class="text-on-background">Sugarhouse Park</p>
+                </div>
+              </div>
+            </div>
+            <!-- Boise -->
+            <div class="flex flex-col items-center text-center gap-6 pt-12 md:pt-0 md:pl-12">
+              <h3 class="font-headline text-2xl text-primary">Boise</h3>
+              <div class="flex flex-row gap-8">
+                <div class="flex flex-col items-center gap-2">
+                  <div class="w-12 h-12 bg-primary-fixed-dim rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-on-primary-fixed text-xl">calendar_month</span>
+                  </div>
+                  <p class="font-label uppercase tracking-widest text-xs text-on-surface-variant">When</p>
+                  <p class="text-on-background">June 27th, 2026</p>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                  <div class="w-12 h-12 bg-primary-fixed-dim rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-on-primary-fixed text-xl">location_on</span>
+                  </div>
+                  <p class="font-label uppercase tracking-widest text-xs text-on-surface-variant">Where</p>
+                  <p class="text-on-background">Camels Back Park</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery Section -->
+      <section id="gallery" class="py-12 overflow-hidden bg-surface">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 mb-8 text-center">
+          <span class="text-primary font-label uppercase tracking-widest text-sm font-semibold">Our Community</span>
+          <h2 class="font-headline text-4xl text-on-background mt-2">Camels Back Park</h2>
+        </div>
+        <div class="gallery-track">
+          {[
+            { src: "/DSCF2041.webp", alt: "BYO Cake Club event photo" },
+            { src: "/DSCF2042.webp", alt: "BYO Cake Club event photo" },
+            { src: "/DSCF2047.webp", alt: "BYO Cake Club event photo" },
+            { src: "/DSCF2080.webp", alt: "BYO Cake Club event photo" },
+            { src: "/DSCF2082.webp", alt: "BYO Cake Club event photo" },
+            { src: "/DSCF2085.webp", alt: "BYO Cake Club event photo" },
+            { src: "/DSCF2102.webp", alt: "BYO Cake Club event photo" },
+            { src: "/DSCF2113.webp", alt: "BYO Cake Club event photo" },
+            { src: "/DSCF2131.webp", alt: "BYO Cake Club event photo" },
+            { src: "/DSCF2150.webp", alt: "BYO Cake Club event photo" },
+            { src: "/DSCF2158.webp", alt: "BYO Cake Club event photo" },
+            { src: "/IMG_0923.webp", alt: "BYO Cake Club event photo" },
+          ].map(({ src, alt }) => (
+            <div class="gallery-item w-72 h-72 overflow-hidden rounded-xl">
+              <Image src={src} alt={alt} width={576} height={576} class="w-full h-full object-cover" loading="lazy" quality={90} />
+            </div>
+          ))}
+          {[
+            "/DSCF2041.webp", "/DSCF2042.webp", "/DSCF2047.webp", "/DSCF2080.webp",
+            "/DSCF2082.webp", "/DSCF2085.webp", "/DSCF2102.webp", "/DSCF2113.webp",
+            "/DSCF2131.webp", "/DSCF2150.webp", "/DSCF2158.webp", "/IMG_0923.webp",
+          ].map((src) => (
+            <div class="gallery-item w-72 h-72 overflow-hidden rounded-xl" aria-hidden="true">
+              <Image src={src} alt="" width={576} height={576} class="w-full h-full object-cover" loading="lazy" quality={90} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- About / Who Are We -->
+      <section id="about" class="py-24 bg-surface">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <!-- Text -->
+            <div class="space-y-6">
+              <span class="inline-block px-4 py-1 bg-secondary-container text-secondary text-xs font-label uppercase tracking-widest rounded-sm">
+                Our Story
+              </span>
+              <h2 class="font-headline text-5xl md:text-6xl text-on-background leading-tight">Who Are We?</h2>
+              <p class="text-lg text-on-surface-variant font-body leading-relaxed">
+                Hi! We are Jessica and Aanika. We're two friends who found each other while navigating life in a new community, and quickly bonded over a shared love of good conversation, new connections, and—most importantly!—cake. What started as simple hangouts turned into a tradition of hosting, baking, and celebrating all things sweet.
+              </p>
+              <p class="text-lg text-on-surface-variant font-body leading-relaxed">
+                After hosting our first cake picnic together in Boise, Jess moved to Utah. We were more determined to keep these events going after seeing how well received it was in Boise. This is why we're returning to Boise for another celebration of homemade cakes — and this spring we're also launching for the very first time in Salt Lake City!
+              </p>
+              <p class="text-lg text-on-surface-variant font-body leading-relaxed">
+                We believe there's something special about bringing people together over dessert—cake has a way of breaking the ice, sparking conversation, and is the sweetest way to turn a neighbor into a friend. This picnic is our way of creating a space where everyone feels welcome, can meet someone new, and enjoy a slice (or two) alongside us!
+              </p>
+              <div class="flex flex-col gap-1 pt-2 text-on-surface-variant font-body text-sm">
+                <span>TikTok: <a href="https://tiktok.com/@aanikaguymon" class="text-secondary hover:underline">@aanikaguymon</a> &nbsp;<a href="https://tiktok.com/@jessicaclifford" class="text-secondary hover:underline">@jessicaclifford</a></span>
+                <span>Instagram: <a href="https://instagram.com/bringyourowncakeclub" class="text-secondary hover:underline">@bringyourowncakeclub</a></span>
+              </div>
+            </div>
+
+            <!-- Scrapbook photos -->
+            <div class="relative h-[480px]">
+              <div class="absolute top-0 right-0 w-4/5 h-4/5 z-10 p-2 bg-surface-container shadow-sm rotate-2 overflow-hidden border border-outline-variant/20 rounded-xl">
+                <Image
+                  src="/DSCF2085.webp"
+                  alt="Community gathering at BYO Cake Club"
+                  width={500}
+                  height={400}
+                  class="w-full h-full object-cover rounded-lg"
+                  loading="lazy"
+                  quality={85}
+                />
+              </div>
+              <div class="absolute bottom-4 left-0 w-3/5 h-3/5 z-20 p-2 bg-white shadow-md -rotate-2 overflow-hidden border border-outline-variant/20 rounded-xl">
+                <Image
+                  src="/DSCF2150.webp"
+                  alt="Dessert table at BYO Cake Club"
+                  width={400}
+                  height={300}
+                  class="w-full h-full object-cover rounded-lg"
+                  loading="lazy"
+                  quality={85}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="botanical-divider max-w-4xl mx-auto my-4 opacity-40"></div>
+
+      <!-- Who Is Invited + Ticket -->
+      <section class="py-24 bg-surface">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+          <!-- Header -->
+          <div class="text-center mb-16 max-w-4xl mx-auto space-y-4">
+            <span class="text-primary font-label uppercase tracking-widest text-sm font-semibold block">All Are Welcome</span>
+            <h2 class="text-4xl md:text-6xl font-headline text-on-background leading-tight">Who Is Invited?</h2>
+            <div class="w-16 h-0.5 bg-secondary mx-auto"></div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start bg-surface-container-low rounded-3xl p-8 md:p-16 relative overflow-hidden">
+            <!-- Left: description + features -->
+            <div class="space-y-6">
+              <p class="text-on-surface-variant leading-relaxed">
+                We want any cake lover to join our event for an opportunity to meet new friends and marvel at each other's baked goods! All are welcome — whether you're a seasoned baker or it's your first time in the kitchen.
+              </p>
+              <ul class="space-y-4 pt-4">
+                <li class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-primary">local_florist</span>
+                  <span class="font-label text-sm uppercase tracking-wide text-on-surface">Amateur &amp; Professional Bakers</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-primary">groups</span>
+                  <span class="font-label text-sm uppercase tracking-wide text-on-surface">All Ages Welcome</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-primary">favorite</span>
+                  <span class="font-label text-sm uppercase tracking-wide text-on-surface">Community Seekers &amp; Creative Souls</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Right: ticket card -->
+            <div class="bg-surface p-8 rounded-xl border-b-4 border-secondary/20 shadow-sm flex flex-col justify-center">
+              <div class="text-secondary font-headline italic text-2xl mb-2">Secure your spot!</div>
+              <div class="text-5xl font-headline text-primary mb-6">$10 Ticket</div>
+              <p class="text-sm text-on-surface-variant font-body leading-relaxed mb-8">
+                We want this event to be accessible to anyone interested so for that reason the ticket price is only $10 per person. This covers rentals, venue, as well as provides you with utensils, napkins, a cake knife and a to-go box!
+              </p>
+              <a
+                href="#signup"
+                class="block w-full py-4 text-center border border-outline-variant text-secondary font-label uppercase tracking-widest hover:bg-secondary-container transition-colors duration-300 rounded-lg text-sm"
+              >
+                Reserve Your Seat
+              </a>
+            </div>
+
+            <!-- Linen texture overlay -->
+            <div class="absolute inset-0 linen-texture pointer-events-none opacity-10 rounded-3xl"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section id="faq" class="bg-surface-container-low py-24">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="text-center mb-16">
+            <h2 class="font-headline text-4xl text-on-background mb-4">Frequently Asked Questions</h2>
+            <div class="w-24 h-1 bg-secondary/30 mx-auto rounded-full"></div>
+          </div>
+          <div class="space-y-12">
+            <div class="group flex items-start gap-6">
+              <span class="font-headline text-3xl text-secondary/40 group-hover:text-secondary transition-colors italic flex-shrink-0">01</span>
+              <div>
+                <h3 class="font-headline text-xl text-on-background mb-3">Do I actually have to bake a whole cake?</h3>
+                <p class="text-on-surface-variant leading-relaxed font-body">While we encourage a full cake, anything baked counts! Tarts, cake pops, and pies are all welcome. The goal is to bring something that represents you. Homemade and decorated cakes are especially encouraged! It's so fun to see all the different creations!</p>
+              </div>
+            </div>
+            <div class="group flex items-start gap-6">
+              <span class="font-headline text-3xl text-secondary/40 group-hover:text-secondary transition-colors italic flex-shrink-0">02</span>
+              <div>
+                <h3 class="font-headline text-xl text-on-background mb-3">Where exactly is the event?</h3>
+                <p class="text-on-surface-variant leading-relaxed font-body">There will be two separate events this year. Our first event will be on May 16th in Salt Lake City at Sugarhouse Park. The second will be in Boise at Camel's Back Park on June 27th. The full address and details will be sent to ticket holders via email once dates are confirmed.</p>
+              </div>
+            </div>
+            <div class="group flex items-start gap-6">
+              <span class="font-headline text-3xl text-secondary/40 group-hover:text-secondary transition-colors italic flex-shrink-0">03</span>
+              <div>
+                <h3 class="font-headline text-xl text-on-background mb-3">What if I have dietary restrictions?</h3>
+                <p class="text-on-surface-variant leading-relaxed font-body">All flavors are celebrated! If you bring something with dietary restrictions in mind, let us know so we can label it accordingly for fellow guests.</p>
+              </div>
+            </div>
+            <div class="group flex items-start gap-6">
+              <span class="font-headline text-3xl text-secondary/40 group-hover:text-secondary transition-colors italic flex-shrink-0">04</span>
+              <div>
+                <h3 class="font-headline text-xl text-on-background mb-3">Who is invited?</h3>
+                <p class="text-on-surface-variant leading-relaxed font-body">We want any cake lover in Boise to join our event for an opportunity to meet new friends and marvel at each other's baked goods! All are welcome to bring a cake and enjoy the event—just RSVP through the email so we can plan for numbers!</p>
+              </div>
+            </div>
+            <div class="group flex items-start gap-6">
+              <span class="font-headline text-3xl text-secondary/40 group-hover:text-secondary transition-colors italic flex-shrink-0">05</span>
+              <div>
+                <h3 class="font-headline text-xl text-on-background mb-3">Can I come alone?</h3>
+                <p class="text-on-surface-variant leading-relaxed font-body">Absolutely. Most of our guests arrive solo and leave having met a whole group of new friends. It's one of the best parts about the event!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Signup + Ticket Section -->
+      <section id="signup" class="py-24 bg-surface-container-high relative overflow-hidden">
+        <div class="max-w-2xl mx-auto px-6 sm:px-8 relative z-10">
+          <div class="text-center mb-14">
+            <h2 class="text-5xl font-headline mb-4 text-on-background">Will you join us?</h2>
+            <p class="text-lg text-on-surface-variant italic">Sign up for updates, or purchase your ticket directly.</p>
+          </div>
+
+          <!-- Join the Club email signup -->
+          <div class="bg-surface rounded-2xl border-b-4 border-secondary/20 shadow-sm p-8 flex flex-col gap-6 mb-8">
+            <div class="text-center">
+              <h3 class="font-headline text-2xl text-on-background">Join the Club</h3>
+              <p class="text-on-surface-variant text-sm mt-2 font-body">Get notified about future events, dates, and all things cake.</p>
+            </div>
+            <form id="signup-form" class="flex flex-col gap-4">
+              <div class="border-b border-outline-variant focus-within:border-primary transition-all pb-2">
+                <label class="block text-xs uppercase tracking-widest text-on-surface-variant mb-2 font-label">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="bg-transparent border-none w-full p-0 focus:ring-0 text-on-background placeholder:text-outline-variant font-body"
+                  placeholder="hello@example.com"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                id="signup-btn"
+                class="w-full bg-primary text-on-primary py-3 rounded-lg font-headline text-base hover:bg-primary-container hover:text-on-primary-container transition-all"
+              >
+                Join the Club
+              </button>
+            </form>
+            <div id="signup-success" class="hidden text-center py-2">
+              <p class="font-headline text-lg text-primary">You're in!</p>
+              <p class="text-on-surface-variant text-sm font-body mt-1">We'll keep you posted on upcoming events.</p>
+            </div>
+          </div>
+
+          <!-- Ticket purchase buttons -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-surface rounded-2xl border-b-4 border-secondary/20 shadow-sm p-6 flex flex-col gap-3">
+              <div>
+                <span class="text-primary font-label uppercase tracking-widest text-xs font-semibold">Salt Lake City, UT</span>
+                <p class="font-headline text-lg text-on-background mt-1">May 16th, 2026</p>
+                <p class="text-on-surface-variant text-sm">Sugarhouse Park</p>
+              </div>
+              <a
+                href={import.meta.env.STRIPE_CHECKOUT_URL_SLC || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full py-3 text-center rounded-lg font-label font-medium text-sm uppercase tracking-widest bg-primary text-on-primary hover:-translate-y-0.5 transition-all shadow-sm"
+              >
+                Buy SLC Ticket — $10
+              </a>
+              <p class="text-on-surface-variant text-xs text-center font-body">Secure checkout powered by Stripe</p>
+            </div>
+            <div class="bg-surface rounded-2xl border-b-4 border-secondary/20 shadow-sm p-6 flex flex-col gap-3">
+              <div>
+                <span class="text-primary font-label uppercase tracking-widest text-xs font-semibold">Boise, ID</span>
+                <p class="font-headline text-lg text-on-background mt-1">June 27th, 2026</p>
+                <p class="text-on-surface-variant text-sm">Camels Back Park</p>
+              </div>
+              <a
+                href={import.meta.env.STRIPE_CHECKOUT_URL_BOISE || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full py-3 text-center rounded-lg font-label font-medium text-sm uppercase tracking-widest bg-primary text-on-primary hover:-translate-y-0.5 transition-all shadow-sm"
+              >
+                Buy Boise Ticket — $10
+              </a>
+              <p class="text-on-surface-variant text-xs text-center font-body">Secure checkout powered by Stripe</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Final CTA Banner -->
+      <section class="bg-primary py-20 px-8 text-center relative overflow-hidden">
+        <div class="relative z-10 max-w-2xl mx-auto">
+          <h2 class="font-headline text-4xl mb-6 italic text-on-primary">Ready to pull up a chair?</h2>
+          <p class="mb-10 text-primary-fixed-dim font-body tracking-wide">Join our next gathering in Boise or Salt Lake City. Sign up to receive the full invite.</p>
+          <a
+            href="#signup"
+            class="bg-surface-bright text-primary font-label px-10 py-4 rounded-lg uppercase tracking-widest text-sm hover:bg-secondary-fixed transition-all shadow-lg inline-block"
           >
-            <Image
-              src="/byocakeclub.png"
-              alt="BYO Cake CLUB Logo"
-              width={300}
-              class="w-full h-auto max-w-[120px] sm:max-w-[200px] lg:max-w-md"
-              loading="eager"
-              quality={90}
-            />
+            Join the Table
+          </a>
+        </div>
+        <!-- Glass flares -->
+        <div class="absolute -top-24 -left-24 w-64 h-64 bg-white/10 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-white/5 blur-[100px] rounded-full pointer-events-none"></div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-outline-variant/20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full px-8 sm:px-12 py-16 max-w-7xl mx-auto">
+        <div class="space-y-6">
+          <span class="font-headline italic text-xl text-primary">Bring Your Own Cake Club</span>
+          <p class="font-body text-sm tracking-wide text-on-surface-variant">
+            © 2026 BYO Cake Club. A curated community gathering.<br />
+            Made with love and lots of sugar.
+          </p>
+          <div class="flex space-x-4">
+            <span class="material-symbols-outlined text-secondary">cake</span>
+            <span class="material-symbols-outlined text-secondary">auto_awesome</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-8">
+          <div class="space-y-4">
+            <h4 class="font-headline text-sm font-semibold text-primary">Gathering</h4>
+            <ul class="space-y-2">
+              <li><a href="#about" class="text-on-surface-variant font-body text-sm hover:text-secondary transition-colors">About</a></li>
+              <li><a href="#faq" class="text-on-surface-variant font-body text-sm hover:text-secondary transition-colors">FAQ</a></li>
+              <li>
+                <a href="mailto:bringyourowncake@gmail.com" class="text-on-surface-variant font-body text-sm hover:text-secondary transition-colors">
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="space-y-4">
+            <h4 class="font-headline text-sm font-semibold text-primary">Community</h4>
+            <ul class="space-y-2">
+              <li><a href="#signup" class="text-on-surface-variant font-body text-sm hover:text-secondary transition-colors">Join the Club</a></li>
+              <li><a href="#gallery" class="text-on-surface-variant font-body text-sm hover:text-secondary transition-colors">Gallery</a></li>
+              <li><a href="/waiver" class="text-on-surface-variant font-body text-sm hover:text-secondary transition-colors">Waiver</a></li>
+            </ul>
           </div>
         </div>
       </div>
-
-      <!-- Next Event & Sign Up Section -->
-      <div
-        class="px-4 sm:px-8 lg:px-12 pt-16 sm:pt-24 lg:pt-36 pb-16 text-center"
-      >
-        <h2
-          class="text-byoc-pink text-base sm:text-lg font-sans uppercase tracking-wider mb-6"
-        >
-          NEXT EVENT:
-        </h2>
-        <h3
-          class="text-byoc-pink text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-12 px-4"
-        >
-          OCTOBER 4TH 2025
-        </h3>
-
-        <p
-          class="text-byoc-pink text-sm sm:text-base lg:text-lg font-sans uppercase tracking-wider mb-8 px-4"
-        >
-          SIGN UP TO JOIN THE CLUB AND RECEIVE AN INVITE
-        </p>
-
-        <!-- Sign up form -->
-        <div id="signup-container" class="max-w-lg mx-auto px-4">
-          <form
-            id="signup-form"
-            class="flex flex-col sm:flex-row gap-4 sm:gap-6"
-          >
-            <input
-              type="email"
-              name="email"
-              id="email-input"
-              placeholder="EMAIL ADDRESS"
-              required
-              class="flex-1 px-4 sm:px-6 py-3 sm:py-4 border border-gray-300 rounded-none text-sm sm:text-base font-sans placeholder-gray-400 focus:outline-none focus:border-byoc-pink"
-            />
-            <button
-              type="submit"
-              id="signup-button"
-              class="bg-byoc-pink text-white px-8 sm:px-12 py-3 sm:py-4 text-sm sm:text-base font-sans uppercase tracking-wider hover:bg-opacity-90 transition-colors"
-            >
-              SIGN UP
-            </button>
-          </form>
-
-          <!-- Ticket Purchase Section (always visible) -->
-          <div id="payment-section" class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto mt-8">
-            <h3 class="text-byoc-pink text-lg font-sans font-semibold mb-4">
-              Ready to Join Us?
-            </h3>
-            <p class="text-gray-700 text-sm mb-4">
-              Purchase your ticket now and secure your spot at the event!
-            </p>
-            <a
-              href={import.meta.env.STRIPE_CHECKOUT_URL || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-block bg-byoc-pink text-white px-6 py-3 rounded-lg font-sans font-semibold hover:bg-opacity-90 transition-colors text-sm"
-            >
-              Buy Ticket - $5
-            </a>
-            <p class="text-gray-500 text-xs mt-3">
-              Secure checkout powered by Stripe
-            </p>
-          </div>
-
-          <!-- Success message (hidden by default) -->
-          <div
-            id="success-message"
-            class="text-center py-8"
-            style="display: none;"
-          >
-            <p class="text-byoc-pink text-lg sm:text-xl font-sans mb-4">
-              Thanks for signing up! 🎂
-            </p>
-            <p class="text-byoc-text-pink text-base font-sans mb-6">
-              We'll email you an invite with all the event details.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Image Gallery Section -->
-      <div class="py-12 overflow-hidden">
-        <div class="gallery-scroll">
-          <!-- First set of images -->
-          <!-- Gallery image 1 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake1.JPG"
-                alt="Pink cake with fruit decoration"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 2 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake2.JPG"
-                alt="Tent event setup with desserts"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 3 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake3.JPG"
-                alt="Chalkboard sign with cake drawing"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 4 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake4.JPG"
-                alt="Dessert table with various baked goods"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 5 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake5.JPG"
-                alt="People gathering at the cake event"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Duplicate set for seamless loop -->
-          <!-- Gallery image 1 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake1.JPG"
-                alt="Pink cake with fruit decoration"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 2 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake2.JPG"
-                alt="Tent event setup with desserts"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 3 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake3.JPG"
-                alt="Chalkboard sign with cake drawing"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 4 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake4.JPG"
-                alt="Dessert table with various baked goods"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 5 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake5.JPG"
-                alt="People gathering at the cake event"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Third set for extra smoothness -->
-          <!-- Gallery image 1 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake1.JPG"
-                alt="Pink cake with fruit decoration"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 2 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake2.JPG"
-                alt="Tent event setup with desserts"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 3 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake3.JPG"
-                alt="Chalkboard sign with cake drawing"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 4 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake4.JPG"
-                alt="Dessert table with various baked goods"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-
-          <!-- Gallery image 5 -->
-          <div class="gallery-slide">
-            <div class="w-48 h-48 overflow-hidden">
-              <Image
-                src="/cake5.JPG"
-                alt="People gathering at the cake event"
-                width={384}
-                height={384}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                quality={90}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Information Sections -->
-      <div class="px-6 lg:px-12 py-16 space-y-16">
-        <!-- WHO ARE WE? -->
-        <div>
-          <h3
-            class="text-byoc-pink text-lg font-sans uppercase tracking-wider mb-6"
-          >
-            WHO ARE WE?
-          </h3>
-          <p
-            class="text-byoc-text-pink text-base font-sans leading-relaxed max-w-4xl"
-          >
-            BYOC is simply a celebration of baked goods. Bring your own cake and
-            join our club! Just bring a cake (one per person) and marvel at
-            Boise's bakings. There are no rules with your cake (though homemade
-            and decorated cakes are encouraged)! Come share your creations and
-            meet like-minded cake lovers!
-          </p>
-        </div>
-
-        <!-- WHAT TO EXPECT -->
-        <div>
-          <h3
-            class="text-byoc-pink text-lg font-sans uppercase tracking-wider mb-6"
-          >
-            WHAT TO EXPECT
-          </h3>
-          <p
-            class="text-byoc-text-pink text-base font-sans leading-relaxed max-w-4xl"
-          >
-            Bring your own delicious cake creation and sample amazing cakes from
-            other bakers! It's a day filled with sugar, creativity, and
-            community.
-          </p>
-        </div>
-
-        <!-- EVENT DETAILS -->
-        <div>
-          <h3
-            class="text-byoc-pink text-lg font-sans uppercase tracking-wider mb-6"
-          >
-            EVENT DETAILS
-          </h3>
-          <p
-            class="text-byoc-text-pink text-base font-sans leading-relaxed mb-4 max-w-4xl"
-          >
-            Our first community potluck will be October 4th from 11:00 AM to 1:00 PM at Camel's Back
-            Park.
-          </p>
-          <p
-            class="text-byoc-text-pink text-base font-sans leading-relaxed max-w-4xl"
-          >
-            Send us an email at
-            <span class="text-byoc-pink font-bold text-lg"
-              >bringyourowncake@gmail.com</span
-            >
-            for the full invite and details.
-          </p>
-        </div>
-
-        <!-- WHO IS INVITED -->
-        <div>
-          <h3
-            class="text-byoc-pink text-lg font-sans uppercase tracking-wider mb-6"
-          >
-            WHO IS INVITED
-          </h3>
-          <p
-            class="text-byoc-text-pink text-base font-sans leading-relaxed max-w-4xl"
-          >
-            We want any cake lover in Boise to join our event for an opportunity
-            to meet new friends and marvel at each others baked goods!
-          </p>
-          <p
-            class="text-byoc-text-pink text-base font-sans leading-relaxed max-w-4xl mt-4"
-          >
-            All are welcome to bring a cake and enjoy the event—just RSVP
-            through the email so we can plan for numbers!
-          </p>
-        </div>
-
-        <!-- PRICING -->
-        <div>
-          <h3
-            class="text-byoc-pink text-lg font-sans uppercase tracking-wider mb-6"
-          >
-            PRICING
-          </h3>
-          <p
-            class="text-byoc-text-pink text-base font-sans leading-relaxed max-w-4xl mb-4"
-          >
-            We want this event to be accessible to anyone interested so the
-            ticket price is only <span class="text-byoc-pink font-bold text-lg"
-              >$5 per person</span
-            >.
-          </p>
-          <p
-            class="text-byoc-text-pink text-base font-sans leading-relaxed max-w-4xl"
-          >
-            This is just to cover the rentals, venue and the utensils and to-go
-            boxes provided.
-          </p>
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <footer class="px-12 py-12 text-center">
-        <p class="text-byoc-text-pink text-base font-sans">
-          Made with love and lots of sugar
-        </p>
-        <p class="text-byoc-text-pink text-sm mt-3 font-sans">
-          © 2025 BYO Cake Club
-        </p>
-      </footer>
-    </div>
+    </footer>
 
     <!-- Structured Data -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Event",
-        "name": "BYO Cake Club - Boise Community Event",
-        "description": "A community potluck where cake enthusiasts gather to share their homemade creations. Bring your own delicious cake creation and sample amazing cakes from other bakers!",
-        "startDate": "2025-10-04T11:00:00-07:00",
-        "endDate": "2025-10-04T15:00:00-07:00",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "location": {
-          "@type": "Place",
-          "name": "Camel's Back Park",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Boise",
-            "addressRegion": "ID",
-            "addressCountry": "US"
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "BYO Cake Club - Boise",
+          "description": "A community potluck where cake enthusiasts gather to share their homemade creations.",
+          "startDate": "2026-04-01",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "location": {
+            "@type": "Place",
+            "name": "Camel's Back Park",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Boise",
+              "addressRegion": "ID",
+              "addressCountry": "US"
+            }
+          },
+          "organizer": {
+            "@type": "Organization",
+            "name": "BYO Cake Club",
+            "url": "https://bringyourowncake.com"
+          },
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock",
+            "price": "10",
+            "priceCurrency": "USD",
+            "url": "https://bringyourowncake.com",
+            "description": "$10 per person"
           }
         },
-        "organizer": {
-          "@type": "Organization",
-          "name": "BYO Cake Club"
-        },
-        "offers": {
-          "@type": "Offer",
-          "availability": "https://schema.org/InStock",
-          "price": "5",
-          "priceCurrency": "USD",
-          "description": "$5 per person covers rentals, venue, utensils, and to-go boxes"
-        },
-        "audience": {
-          "@type": "Audience",
-          "audienceType": "Cake enthusiasts and bakers"
+        {
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "BYO Cake Club - Salt Lake City",
+          "description": "A community potluck where cake enthusiasts gather to share their homemade creations.",
+          "startDate": "2026-05-01",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "location": {
+            "@type": "Place",
+            "name": "Sugar House Park",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Salt Lake City",
+              "addressRegion": "UT",
+              "addressCountry": "US"
+            }
+          },
+          "organizer": {
+            "@type": "Organization",
+            "name": "BYO Cake Club",
+            "url": "https://bringyourowncake.com"
+          },
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock",
+            "price": "10",
+            "priceCurrency": "USD",
+            "url": "https://bringyourowncake.com",
+            "description": "$10 per person"
+          }
         }
-      }
+      ]
     </script>
 
     <script>
-      // Declare gtag function for TypeScript
       declare function gtag(...args: any[]): void;
 
-      // Error tracking
       window.addEventListener('error', function (e) {
         if (typeof gtag !== 'undefined') {
-          gtag('event', 'exception', {
-            description: e.message,
-            fatal: false,
-          });
+          gtag('event', 'exception', { description: e.message, fatal: false });
         }
       });
 
-      // Handle form submission inline
-      const form = document.getElementById('signup-form');
-      const emailInput = document.getElementById(
-        'email-input'
-      ) as HTMLInputElement;
-      const signupButton = document.getElementById(
-        'signup-button'
-      ) as HTMLButtonElement;
-      const successMessage = document.getElementById('success-message');
+      // Handle unified club signup
+      const signupForm = document.getElementById('signup-form') as HTMLFormElement | null;
+      const signupBtn = document.getElementById('signup-btn') as HTMLButtonElement | null;
+      const signupSuccess = document.getElementById('signup-success') as HTMLElement | null;
 
-      if (form && emailInput && signupButton && successMessage) {
-        form.addEventListener('submit', async function (e) {
-          e.preventDefault();
+      signupForm?.addEventListener('submit', async function (e) {
+        e.preventDefault();
 
-          const email = emailInput.value;
+        const email = (signupForm.querySelector('input[type="email"]') as HTMLInputElement).value;
 
-          if (email && email.includes('@')) {
-            // Track form submission
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'form_submit', {
-                event_category: 'engagement',
-                event_label: 'email_signup',
-              });
-            }
-
-            // Show loading state
-            signupButton.textContent = 'SENDING...';
-            signupButton.disabled = true;
-
-            try {
-              // Send welcome email using Resend
-              const controller = new AbortController();
-              const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-
-              console.log('Sending request to /api/send-welcome-email...');
-              const response = await fetch('/api/send-welcome-email', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  email: email,
-                  event_date: 'October 4th, 2025',
-                  event_location: "Camel's Back Park",
-                  event_time: '11:00 AM - 1:00 PM',
-                  contact_email: 'bringyourowncake@gmail.com',
-                  ticket_price: '$5 per person',
-                }),
-                signal: controller.signal,
-              });
-
-              clearTimeout(timeoutId);
-
-              console.log('Response status:', response.status);
-              console.log('Response ok:', response.ok);
-              console.log('Response headers:', Object.fromEntries(response.headers.entries()));
-
-              if (response.ok) {
-                try {
-                  const result = await response.json();
-                  console.log('✅ Welcome email sent successfully:', result);
-                  
-                  // Show success message and hide form (keep payment section visible)
-                  form.style.display = 'none';
-                  successMessage.style.display = 'block';
-                } catch (parseError) {
-                  console.error('❌ Failed to parse response:', parseError);
-                  console.log('Response text:', await response.text());
-                  
-                  // Still show success if response was ok but couldn't parse JSON
-                  form.style.display = 'none';
-                  successMessage.style.display = 'block';
-                }
-              } else {
-                try {
-                  const errorData = await response.json();
-                  console.error('❌ Failed to send email:', errorData);
-                } catch (parseError) {
-                  console.error('❌ Failed to parse error response:', parseError);
-                  const errorText = await response.text();
-                  console.error('Error response text:', errorText);
-                }
-                
-                // Show error state
-                signupButton.textContent = 'ERROR - TRY AGAIN';
-                signupButton.classList.add('bg-red-500');
-
-                setTimeout(() => {
-                  signupButton.textContent = 'SIGN UP';
-                  signupButton.classList.remove('bg-red-500');
-                  signupButton.disabled = false;
-                }, 3000);
-              }
-
-            } catch (error) {
-              console.error('❌ Error sending email:', error);
-
-              // Show error state
-              signupButton.textContent = 'ERROR - TRY AGAIN';
-              signupButton.classList.add('bg-red-500');
-
-              setTimeout(() => {
-                signupButton.textContent = 'SIGN UP';
-                signupButton.classList.remove('bg-red-500');
-                signupButton.disabled = false;
-              }, 3000);
-            }
-          } else {
-            // Show validation error
-            signupButton.textContent = 'INVALID EMAIL';
-            signupButton.classList.add('bg-red-500');
-
-            setTimeout(() => {
-              signupButton.textContent = 'SIGN UP';
-              signupButton.classList.remove('bg-red-500');
-            }, 2000);
-          }
-        });
-      }
-
-      // Smooth infinite scroll gallery
-      function initSmoothGallery() {
-        const gallery = document.querySelector('.gallery-scroll');
-        if (!gallery) return;
-
-        let position = 0;
-        const speed = 0.5; // pixels per frame
-        const imageWidth = 192; // w-48 = 192px
-        const totalImages = 5; // number of unique images
-        const resetPoint = imageWidth * totalImages; // when to reset (960px)
-
-        function smoothScroll() {
-          position += speed;
-
-          // Reset position when we've scrolled one full set
-          if (position >= resetPoint) {
-            position = 0;
-          }
-
-          // Apply transform
-          if (gallery) {
-            (gallery as HTMLElement).style.transform = `translateX(-${position}px)`;
-          }
-          requestAnimationFrame(smoothScroll);
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'form_submit', {
+            event_category: 'engagement',
+            event_label: 'email_signup',
+          });
         }
 
-        // Start the animation
-        smoothScroll();
-      }
+        signupBtn!.textContent = 'SENDING...';
+        signupBtn!.disabled = true;
 
-      // Initialize when page loads
-      document.addEventListener('DOMContentLoaded', initSmoothGallery);
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+          const response = await fetch('/api/send-welcome-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+            signal: controller.signal,
+          });
+
+          clearTimeout(timeoutId);
+
+          if (response.ok) {
+            signupForm.classList.add('hidden');
+            signupSuccess?.classList.remove('hidden');
+          } else {
+            signupBtn!.textContent = 'ERROR — TRY AGAIN';
+            signupBtn!.classList.add('bg-red-600');
+            setTimeout(() => {
+              signupBtn!.textContent = 'Join the Club';
+              signupBtn!.classList.remove('bg-red-600');
+              signupBtn!.disabled = false;
+            }, 3000);
+          }
+        } catch {
+          signupBtn!.textContent = 'ERROR — TRY AGAIN';
+          signupBtn!.classList.add('bg-red-600');
+          setTimeout(() => {
+            signupBtn!.textContent = 'Join the Club';
+            signupBtn!.classList.remove('bg-red-600');
+            signupBtn!.disabled = false;
+          }, 3000);
+        }
+      });
     </script>
-	</body>
+  </body>
 </html>

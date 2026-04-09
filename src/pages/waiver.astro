@@ -1,72 +1,41 @@
 ---
-// Set the page title and metadata
+export const prerender = true;
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Terms and Conditions for BYO Cake Club Event - Waiver and Release Agreement"
-    />
-    <meta
-      name="keywords"
-      content="waiver, terms and conditions, BYO Cake Club, event waiver, liability release"
-    />
+    <meta name="description" content="Terms and Conditions for BYO Cake Club Event - Waiver and Release Agreement" />
+    <meta name="keywords" content="waiver, terms and conditions, BYO Cake Club, event waiver, liability release" />
     <meta name="author" content="Bring Your Own Cake Club" />
-    <meta
-      name="robots"
-      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-    />
-    <meta name="language" content="English" />
-    <meta name="revisit-after" content="7 days" />
-    <meta name="theme-color" content="#E6397F" />
-    <meta name="msapplication-TileColor" content="#E6397F" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#52634c" />
+    <meta name="msapplication-TileColor" content="#52634c" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="BYO Cake Club" />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bringyourowncake.com/waiver" />
     <meta property="og:title" content="BYO Cake Club - Terms and Conditions" />
-    <meta
-      property="og:description"
-      content="Terms and Conditions for BYO Cake Club Event - Waiver and Release Agreement"
-    />
-    <meta
-      property="og:image"
-      content="https://bringyourowncake.com/og-image.jpg"
-    />
+    <meta property="og:description" content="Terms and Conditions for BYO Cake Club Event - Waiver and Release Agreement" />
+    <meta property="og:image" content="https://bringyourowncake.com/og-image.svg" />
     <meta property="og:site_name" content="BYO Cake Club" />
     <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://bringyourowncake.com/waiver" />
-    <meta
-      property="twitter:title"
-      content="BYO Cake Club - Terms and Conditions"
-    />
-    <meta
-      property="twitter:description"
-      content="Terms and Conditions for BYO Cake Club Event - Waiver and Release Agreement"
-    />
-    <meta
-      property="twitter:image"
-      content="https://bringyourowncake.com/twitter-image.jpg"
-    />
+    <meta property="twitter:title" content="BYO Cake Club - Terms and Conditions" />
+    <meta property="twitter:description" content="Terms and Conditions for BYO Cake Club Event - Waiver and Release Agreement" />
+    <meta property="twitter:image" content="https://bringyourowncake.com/twitter-image.svg" />
 
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://bringyourowncake.com/waiver" />
-
     <title>Terms and Conditions | BYO Cake Club</title>
 
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GQSHYPQM7"
-    ></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GQSHYPQM7"></script>
     <script>
       // @ts-ignore
       window.dataLayer = window.dataLayer || [];
@@ -78,166 +47,194 @@
       gtag('config', 'G-5GQSHYPQM7');
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-	</head>
-  <body class="bg-byoc-teal min-h-screen">
-    <div class="max-w-7xl mx-auto">
-      <!-- Header Section -->
-      <div class="relative">
-        <!-- Small header text -->
-        <div class="pt-8 px-6">
-          <p class="text-byoc-pink text-xl font-sans uppercase tracking-wider">
-            BRING YOUR OWN CAKE CLUB
-          </p>
-        </div>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
 
-        <!-- Navigation -->
-        <div class="px-6 pt-4">
-          <a 
-            href="/" 
-            class="text-byoc-text-pink text-sm font-sans hover:text-byoc-pink transition-colors"
-          >
-            ← Back to Home
-          </a>
-        </div>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+  </head>
 
-        <!-- Page Title -->
-        <div class="px-6 pt-8 pb-12 text-center">
-          <h1 class="text-byoc-pink text-3xl sm:text-4xl lg:text-5xl font-serif font-bold mb-4">
-            Terms and Conditions
-          </h1>
-          <p class="text-byoc-text-pink text-base font-sans">
-            Waiver and Release Agreement for BYO Cake Club Event
-          </p>
-        </div>
+  <body class="bg-background text-on-background font-body min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-[#fef9ed]/80 backdrop-blur-xl sticky top-0 z-50">
+      <div class="flex justify-between items-center w-full px-6 sm:px-8 py-4 max-w-7xl mx-auto">
+        <a href="/" class="text-xl sm:text-2xl font-headline italic text-primary">
+          BRING YOUR OWN CAKE CLUB
+        </a>
+        <a
+          href="/"
+          class="flex items-center gap-1 text-on-surface-variant font-label text-sm uppercase tracking-widest hover:text-secondary transition-colors duration-300"
+        >
+          <span class="material-symbols-outlined text-base">arrow_back</span>
+          Back to Home
+        </a>
+      </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 sm:px-8 py-16">
+
+      <!-- Page header -->
+      <div class="text-center mb-16">
+        <span class="inline-block px-4 py-1 bg-secondary-container text-secondary text-xs font-label uppercase tracking-widest rounded-sm mb-6">
+          Legal
+        </span>
+        <h1 class="font-headline text-4xl sm:text-5xl text-on-background leading-tight mb-4">
+          Terms &amp; Conditions
+        </h1>
+        <p class="text-on-surface-variant font-body italic">
+          Waiver and Release Agreement for BYO Cake Club events
+        </p>
+        <div class="w-16 h-px bg-secondary mx-auto mt-8"></div>
       </div>
 
-      <!-- Terms Content -->
-      <div class="px-6 lg:px-12 pb-16">
-        <div class="max-w-4xl mx-auto">
-          <!-- Terms Content Area -->
-          <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-            <div class="prose prose-lg max-w-none">
-              <div class="space-y-8 text-gray-700">
-                <section>
-                  <h2 class="text-byoc-pink text-xl font-serif font-semibold mb-4">1. Assumption of Risk</h2>
-                  <p class="text-base leading-relaxed mb-4">
-                    By purchasing a ticket and/or attending the Bring Your Own Cake Club event, you understand and agree that:
-                  </p>
-                  <ul class="text-base leading-relaxed space-y-2 ml-6">
-                    <li class="flex items-start">
-                      <span class="text-byoc-pink mr-2">•</span>
-                      <span>This is a community event where cakes and other food items are prepared and shared by individual participants.</span>
-                    </li>
-                    <li class="flex items-start">
-                      <span class="text-byoc-pink mr-2">•</span>
-                      <span>The organizers do not inspect, prepare, or guarantee the safety of any food or beverages provided.</span>
-                    </li>
-                    <li class="flex items-start">
-                      <span class="text-byoc-pink mr-2">•</span>
-                      <span>Eating food at this event involves inherent risks, including but not limited to foodborne illness, allergic reaction, or choking.</span>
-                    </li>
-                    <li class="flex items-start">
-                      <span class="text-byoc-pink mr-2">•</span>
-                      <span>You voluntarily choose to participate and consume food at your own discretion and risk.</span>
-                    </li>
-                  </ul>
-                </section>
+      <!-- Terms content -->
+      <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/20 shadow-sm p-8 sm:p-12 space-y-12">
 
-                <section>
-                  <h2 class="text-byoc-pink text-xl font-serif font-semibold mb-4">2. Release of Liability</h2>
-                  <p class="text-base leading-relaxed mb-4">
-                    In consideration of being allowed to attend and participate in the Bring Your Own Cake Club event, you agree to release and hold harmless:
-                  </p>
-                  <ul class="text-base leading-relaxed space-y-2 ml-6 mb-4">
-                    <li class="flex items-start">
-                      <span class="text-byoc-pink mr-2">•</span>
-                      <span>Bring Your Own Cake Club,</span>
-                    </li>
-                    <li class="flex items-start">
-                      <span class="text-byoc-pink mr-2">•</span>
-                      <span>Going Guymon LLC,</span>
-                    </li>
-                    <li class="flex items-start">
-                      <span class="text-byoc-pink mr-2">•</span>
-                      <span>and their owners, organizers, volunteers, and affiliates,</span>
-                    </li>
-                  </ul>
-                  <p class="text-base leading-relaxed">
-                    from any and all liability, claims, demands, or causes of action related to illness, injury, or damages arising out of participation in this event.
-                  </p>
-                </section>
-
-                <section>
-                  <h2 class="text-byoc-pink text-xl font-serif font-semibold mb-4">3. Personal Responsibility</h2>
-                  <ul class="text-base leading-relaxed space-y-2 ml-6">
-                    <li class="flex items-start">
-                      <span class="text-byoc-pink mr-2">•</span>
-                      <span>You are responsible for making your own decisions regarding what you eat or drink.</span>
-                    </li>
-                    <li class="flex items-start">
-                      <span class="text-byoc-pink mr-2">•</span>
-                      <span>If you have food allergies or dietary restrictions, you acknowledge that it is your responsibility to avoid foods that may cause a reaction.</span>
-                    </li>
-                    <li class="flex items-start">
-                      <span class="text-byoc-pink mr-2">•</span>
-                      <span>You agree not to hold the organizers responsible for labeling, preparation methods, or cross-contamination of food provided by other participants.</span>
-                    </li>
-                  </ul>
-                </section>
-
-                <section>
-                  <h2 class="text-byoc-pink text-xl font-serif font-semibold mb-4">4. Acknowledgment of Understanding</h2>
-                  <p class="text-base leading-relaxed">
-                    By purchasing a ticket and/or attending the event, you acknowledge that you have read this waiver, fully understand its terms, and agree to be bound by it.
-                  </p>
-                </section>
-              </div>
-            </div>
+        <section>
+          <div class="flex items-start gap-6 mb-4">
+            <span class="font-headline text-3xl text-secondary/40 italic flex-shrink-0">01</span>
+            <h2 class="font-headline text-xl text-on-background pt-1">Assumption of Risk</h2>
           </div>
+          <div class="ml-[3.75rem] space-y-4">
+            <p class="text-on-surface-variant leading-relaxed font-body">
+              By purchasing a ticket and/or attending the Bring Your Own Cake Club event, you understand and agree that:
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-on-surface-variant font-body leading-relaxed">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0">fiber_manual_record</span>
+                <span>This is a community event where cakes and other food items are prepared and shared by individual participants.</span>
+              </li>
+              <li class="flex items-start gap-3 text-on-surface-variant font-body leading-relaxed">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0">fiber_manual_record</span>
+                <span>The organizers do not inspect, prepare, or guarantee the safety of any food or beverages provided.</span>
+              </li>
+              <li class="flex items-start gap-3 text-on-surface-variant font-body leading-relaxed">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0">fiber_manual_record</span>
+                <span>Eating food at this event involves inherent risks, including but not limited to foodborne illness, allergic reaction, or choking.</span>
+              </li>
+              <li class="flex items-start gap-3 text-on-surface-variant font-body leading-relaxed">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0">fiber_manual_record</span>
+                <span>You voluntarily choose to participate and consume food at your own discretion and risk.</span>
+              </li>
+            </ul>
+          </div>
+        </section>
 
-        </div>
+        <div class="w-full h-px bg-outline-variant/30"></div>
+
+        <section>
+          <div class="flex items-start gap-6 mb-4">
+            <span class="font-headline text-3xl text-secondary/40 italic flex-shrink-0">02</span>
+            <h2 class="font-headline text-xl text-on-background pt-1">Release of Liability</h2>
+          </div>
+          <div class="ml-[3.75rem] space-y-4">
+            <p class="text-on-surface-variant leading-relaxed font-body">
+              In consideration of being allowed to attend and participate in the Bring Your Own Cake Club event, you agree to release and hold harmless:
+            </p>
+            <ul class="space-y-3 mb-4">
+              <li class="flex items-start gap-3 text-on-surface-variant font-body leading-relaxed">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0">fiber_manual_record</span>
+                <span>Bring Your Own Cake Club,</span>
+              </li>
+              <li class="flex items-start gap-3 text-on-surface-variant font-body leading-relaxed">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0">fiber_manual_record</span>
+                <span>Going Guymon LLC,</span>
+              </li>
+              <li class="flex items-start gap-3 text-on-surface-variant font-body leading-relaxed">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0">fiber_manual_record</span>
+                <span>and their owners, organizers, volunteers, and affiliates,</span>
+              </li>
+            </ul>
+            <p class="text-on-surface-variant leading-relaxed font-body">
+              from any and all liability, claims, demands, or causes of action related to illness, injury, or damages arising out of participation in this event.
+            </p>
+          </div>
+        </section>
+
+        <div class="w-full h-px bg-outline-variant/30"></div>
+
+        <section>
+          <div class="flex items-start gap-6 mb-4">
+            <span class="font-headline text-3xl text-secondary/40 italic flex-shrink-0">03</span>
+            <h2 class="font-headline text-xl text-on-background pt-1">Personal Responsibility</h2>
+          </div>
+          <div class="ml-[3.75rem]">
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-on-surface-variant font-body leading-relaxed">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0">fiber_manual_record</span>
+                <span>You are responsible for making your own decisions regarding what you eat or drink.</span>
+              </li>
+              <li class="flex items-start gap-3 text-on-surface-variant font-body leading-relaxed">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0">fiber_manual_record</span>
+                <span>If you have food allergies or dietary restrictions, you acknowledge that it is your responsibility to avoid foods that may cause a reaction.</span>
+              </li>
+              <li class="flex items-start gap-3 text-on-surface-variant font-body leading-relaxed">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0">fiber_manual_record</span>
+                <span>You agree not to hold the organizers responsible for labeling, preparation methods, or cross-contamination of food provided by other participants.</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <div class="w-full h-px bg-outline-variant/30"></div>
+
+        <section>
+          <div class="flex items-start gap-6 mb-4">
+            <span class="font-headline text-3xl text-secondary/40 italic flex-shrink-0">04</span>
+            <h2 class="font-headline text-xl text-on-background pt-1">Acknowledgment of Understanding</h2>
+          </div>
+          <div class="ml-[3.75rem]">
+            <p class="text-on-surface-variant leading-relaxed font-body">
+              By purchasing a ticket and/or attending the event, you acknowledge that you have read this waiver, fully understand its terms, and agree to be bound by it.
+            </p>
+          </div>
+        </section>
+
       </div>
 
-      <!-- Footer -->
-      <footer class="px-12 py-12 text-center">
-        <p class="text-byoc-text-pink text-base font-sans">
-          Made with love and lots of sugar
-        </p>
-        <p class="text-byoc-text-pink text-sm mt-3 font-sans">
-          © 2025 BYO Cake Club
-        </p>
-      </footer>
-    </div>
+      <!-- Back link -->
+      <div class="text-center mt-12">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-secondary font-label text-sm uppercase tracking-widest hover:text-primary transition-colors duration-300"
+        >
+          <span class="material-symbols-outlined text-base">arrow_back</span>
+          Back to Home
+        </a>
+      </div>
 
-    <!-- Structured Data -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-outline-variant/20 mt-16">
+      <div class="max-w-7xl mx-auto px-8 py-12 text-center">
+        <span class="font-headline italic text-primary">Bring Your Own Cake Club</span>
+        <p class="text-on-surface-variant text-sm font-body mt-3">
+          © 2026 BYO Cake Club. Made with love and lots of sugar.
+        </p>
+      </div>
+    </footer>
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "BYO Cake Club - Terms and Conditions",
         "description": "Terms and Conditions for BYO Cake Club Event - Waiver and Release Agreement",
-        "url": "https://bringyourowncake.com/waiver",
-        "mainEntity": {
-          "@type": "Event",
-          "name": "BYO Cake Club - Boise Community Event",
-          "startDate": "2025-10-04T11:00:00-07:00",
-          "endDate": "2025-10-04T15:00:00-07:00",
-          "location": {
-            "@type": "Place",
-            "name": "Camel's Back Park",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Boise",
-              "addressRegion": "ID",
-              "addressCountry": "US"
-            }
-          }
-        }
+        "url": "https://bringyourowncake.com/waiver"
       }
     </script>
-	</body>
+  </body>
 </html>
