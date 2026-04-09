@@ -3,6 +3,7 @@ import { randomBytes } from "node:crypto";
 import QRCode from "qrcode";
 import { Resend } from "resend";
 import Stripe from "stripe";
+import { ticketEmailHtml } from "../../src/emails/ticket.js";
 
 interface NetlifyEvent {
   headers: Record<string, string | undefined>;
@@ -114,51 +115,15 @@ export const handler = async (event: NetlifyEvent) => {
         from: process.env.MAIL_FROM || "BYO Cake Club <noreply@bringyourowncake.com>",
         to: [email],
         subject: "Your BYO Cake Club Ticket 🎂",
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <h1 style="color: #E6397F; text-align: center;">Your BYO Cake Club Ticket! 🎂</h1>
-
-            <p>Hello ${firstName ?? "there"},</p>
-
-            <p>Thank you for your purchase! Your ticket has been confirmed.</p>
-
-            <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;">
-              <h3 style="color: #E6397F; margin-top: 0;">Your Ticket Code</h3>
-              <p style="font-size: 18px; font-weight: bold; color: #E6397F; margin: 10px 0;">${code}</p>
-              <p style="font-size: 16px; color: #333; margin: 20px 0;">
-                <strong>Attached is your QR code that will grant you entry to the event.</strong>
-              </p>
-              <p style="font-size: 14px; color: #666; margin-top: 15px;">
-                Please present this QR code at the event for entry.
-              </p>
-            </div>
-
-            <div style="background-color: #e9ecef; padding: 15px; border-radius: 8px; margin: 20px 0;">
-              <h4 style="color: #333; margin-top: 0;">Ticket Details:</h4>
-              <ul style="margin: 10px 0; padding-left: 20px;">
-                <li><strong>Ticket Code:</strong> ${code}</li>
-                <li><strong>Quantity:</strong> ${quantity}</li>
-                ${firstName ? `<li><strong>Name:</strong> ${firstName}${lastName ? ` ${lastName}` : ""}</li>` : ""}
-                <li><strong>Email:</strong> ${email}</li>
-              </ul>
-            </div>
-
-            <div style="background-color: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0;">
-              <h3 style="color: #856404; margin-top: 0;">What to Bring</h3>
-              <p>Please bring your own cake creation to share! Homemade and decorated cakes are encouraged.</p>
-            </div>
-
-            <div style="text-align: center; margin: 30px 0;">
-              <p>We're excited to see your delicious creations!</p>
-              <p>Questions? Email us at <a href="mailto:${process.env.CONTACT_EMAIL || "contact@bringyourowncake.com"}" style="color: #E6397F;">${process.env.CONTACT_EMAIL || "contact@bringyourowncake.com"}</a></p>
-            </div>
-
-            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
-              <p style="color: #666; font-size: 14px;">Made with love and lots of sugar 🍰</p>
-              <p style="color: #666; font-size: 12px;">© 2025 BYO Cake Club</p>
-            </div>
-          </div>
-        `,
+        html: ticketEmailHtml({
+          firstName,
+          lastName,
+          email,
+          code,
+          quantity,
+          city,
+          contactEmail: process.env.CONTACT_EMAIL,
+        }),
         attachments: [
           {
             filename: `ticket-${code}.png`,

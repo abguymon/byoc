@@ -117,7 +117,7 @@ export const prerender = true;
       .gallery-track {
         display: flex;
         width: max-content;
-        animation: marquee 24s linear infinite;
+        animation: marquee 60s linear infinite;
       }
       .gallery-item {
         margin-right: 1rem;
@@ -153,7 +153,7 @@ export const prerender = true;
       <!-- Hero Section -->
       <section class="relative min-h-[85vh] flex items-center overflow-hidden bg-surface">
         <div class="absolute inset-0 linen-texture pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 pt-16 pb-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
 
           <!-- Left: Text -->
           <div class="z-10 order-2 lg:order-1">
@@ -198,6 +198,83 @@ export const prerender = true;
           </div>
         </div>
       </section>
+
+      <!-- Countdown Section -->
+      <section class="bg-surface pb-16 pt-8">
+        <div class="max-w-2xl mx-auto px-6 sm:px-8 text-center">
+          <p id="countdown-label" class="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-6">Loading...</p>
+          <div id="countdown-display" class="flex justify-center gap-6 sm:gap-10">
+            <div class="flex flex-col items-center gap-2">
+              <span id="cd-days" class="font-headline text-6xl sm:text-7xl text-on-background tabular-nums">--</span>
+              <span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Days</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <span id="cd-hours" class="font-headline text-6xl sm:text-7xl text-on-background tabular-nums">--</span>
+              <span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Hours</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <span id="cd-minutes" class="font-headline text-6xl sm:text-7xl text-on-background tabular-nums">--</span>
+              <span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Min</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <span id="cd-seconds" class="font-headline text-6xl sm:text-7xl text-on-background tabular-nums">--</span>
+              <span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Sec</span>
+            </div>
+          </div>
+          <div id="countdown-done" class="hidden">
+            <p class="font-headline text-4xl text-on-background italic">See you at the park 🎂</p>
+          </div>
+        </div>
+      </section>
+
+      <script>
+        const SLC   = new Date('2026-05-16T12:00:00-06:00').getTime();
+        const BOISE = new Date('2026-06-27T12:00:00-06:00').getTime();
+
+        const label   = document.getElementById('countdown-label');
+        const display = document.getElementById('countdown-display');
+        const done    = document.getElementById('countdown-done');
+        const days    = document.getElementById('cd-days');
+        const hours   = document.getElementById('cd-hours');
+        const minutes = document.getElementById('cd-minutes');
+        const seconds = document.getElementById('cd-seconds');
+
+        function pad(n: number) { return n.toString().padStart(2, '0'); }
+
+        function tick() {
+          const now  = Date.now();
+          let target: number;
+          let lbl: string;
+
+          if (now < SLC) {
+            target = SLC;
+            lbl = 'Until Salt Lake City · May 16th';
+          } else if (now < BOISE) {
+            target = BOISE;
+            lbl = 'Until Boise · June 27th';
+          } else {
+            display!.classList.add('hidden');
+            done!.classList.remove('hidden');
+            label!.textContent = 'Both events have passed — until next time!';
+            return;
+          }
+
+          const dist = target - now;
+          const d = Math.floor(dist / 86400000);
+          const h = Math.floor((dist % 86400000) / 3600000);
+          const m = Math.floor((dist % 3600000) / 60000);
+          const s = Math.floor((dist % 60000) / 1000);
+
+          label!.textContent   = lbl;
+          days!.textContent    = d.toString();
+          hours!.textContent   = pad(h);
+          minutes!.textContent = pad(m);
+          seconds!.textContent = pad(s);
+        }
+
+        tick();
+        setInterval(tick, 1000);
+      </script>
 
       <!-- Event Details Section -->
       <section class="bg-surface-container-low py-24">
