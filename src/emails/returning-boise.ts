@@ -29,7 +29,8 @@ export function returningBoiseEmailHtml({ checkoutUrlBoise, checkoutUrlSlc }: Re
         <div style="background-color: #f8f3e7; padding: 24px; border-radius: 8px; margin: 0 0 16px; border: 1px solid #c4c8be; text-align: center;">
           <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #52634c; margin: 0 0 8px;">Boise — Round Two</p>
           <p style="font-family: 'Noto Serif', Georgia, serif; font-size: 22px; color: #1d1c15; margin: 0 0 4px;">June 27th, 2026</p>
-          <p style="color: #444841; font-size: 15px; margin: 0;">Camels Back Park · Boise, ID</p>
+          <p style="color: #444841; font-size: 15px; margin: 0 0 2px;">Camels Back Park · Boise, ID</p>
+          <p style="color: #747870; font-size: 13px; margin: 0;">11:00am–2:00pm</p>
           ${boiseButton}
         </div>
 
@@ -39,7 +40,7 @@ export function returningBoiseEmailHtml({ checkoutUrlBoise, checkoutUrlSlc }: Re
           <table style="width: 100%; border-collapse: collapse; font-size: 14px; color: #1d1c15; margin-bottom: 4px;">
             <tr>
               <td style="padding: 2px 0; color: #747870; width: 60px;">When</td>
-              <td style="padding: 2px 0;">May 16th, 2026</td>
+              <td style="padding: 2px 0;">May 16th, 2026 · 11:00am–2:00pm</td>
             </tr>
             <tr>
               <td style="padding: 2px 0; color: #747870;">Where</td>
