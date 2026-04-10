@@ -22,7 +22,7 @@ export function ticketEmailHtml({ firstName, lastName, email, code, quantity, ci
           <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #52634c; margin: 0 0 12px;">Event Details</p>
           <table style="width: 100%; border-collapse: collapse; font-size: 15px; color: #1d1c15;">
             <tr><td style="padding: 4px 0; color: #747870; width: 80px;">Where</td><td style="padding: 4px 0;"><strong>${event.name}</strong> · ${event.location}</td></tr>
-            <tr><td style="padding: 4px 0; color: #747870;">When</td><td style="padding: 4px 0;">${event.date}</td></tr>
+            <tr><td style="padding: 4px 0; color: #747870;">When</td><td style="padding: 4px 0;">${event.date} · 11:00am–2:00pm</td></tr>
           </table>
         </div>` : '';
 

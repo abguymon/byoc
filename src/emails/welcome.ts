@@ -31,13 +31,15 @@ export function welcomeEmailHtml({ checkoutUrlSlc, checkoutUrlBoise }: WelcomeEm
               <td style="padding: 0 8px 0 0; vertical-align: top; width: 50%;">
                 <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #747870; margin: 0 0 4px;">Salt Lake City, UT</p>
                 <p style="color: #1d1c15; margin: 0 0 4px; font-size: 15px;">May 16th, 2026</p>
-                <p style="color: #444841; margin: 0; font-size: 13px;">Sugarhouse Park</p>
+                <p style="color: #444841; margin: 0 0 2px; font-size: 13px;">Sugarhouse Park</p>
+                <p style="color: #747870; margin: 0; font-size: 12px;">11:00am–2:00pm</p>
                 ${slcButton}
               </td>
               <td style="padding: 0 0 0 8px; vertical-align: top; width: 50%;">
                 <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #747870; margin: 0 0 4px;">Boise, ID</p>
                 <p style="color: #1d1c15; margin: 0 0 4px; font-size: 15px;">June 27th, 2026</p>
-                <p style="color: #444841; margin: 0; font-size: 13px;">Camels Back Park</p>
+                <p style="color: #444841; margin: 0 0 2px; font-size: 13px;">Camels Back Park</p>
+                <p style="color: #747870; margin: 0; font-size: 12px;">11:00am–2:00pm</p>
                 ${boiseButton}
               </td>
             </tr>
