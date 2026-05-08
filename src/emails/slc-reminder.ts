@@ -57,6 +57,8 @@ export function slcReminderEmailHtml(): string {
         <p style="color: #1d1c15; font-size: 16px; line-height: 1.7; margin: 0 0 8px;">Again, we are so excited and cannot wait to see everyone there!</p>
         <p style="font-family: 'Noto Serif', Georgia, serif; font-style: italic; font-size: 18px; color: #7b5455; margin: 0 0 32px;">Aanika &amp; Jessica</p>
 
+        <p style="text-align: center; color: #747870; font-size: 12px; line-height: 1.6; margin: 0 0 24px;">This is a private event for ticketed club members only. By attending, you agree to our <a href="https://bringyourowncake.com/waiver" style="color: #7b5455; text-decoration: underline;">Terms &amp; Conditions</a>.</p>
+
         <p style="text-align: center; color: #444841; font-size: 14px; margin: 0 0 8px;">Find out more at <a href="https://bringyourowncake.com" style="color: #7b5455; text-decoration: none; font-weight: 500;">bringyourowncake.com</a></p>
         <p style="text-align: center; color: #747870; font-size: 13px; margin: 0;">Questions? Email us at <a href="mailto:bringyourowncake@gmail.com" style="color: #7b5455; text-decoration: none;">bringyourowncake@gmail.com</a></p>
       </div>
