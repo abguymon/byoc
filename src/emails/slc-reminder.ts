@@ -20,6 +20,10 @@ export function slcReminderEmailHtml(): string {
           <p style="color: #747870; font-size: 13px; margin: 0;">11:00 AM – 2:00 PM</p>
         </div>
 
+        <a href="https://maps.google.com/?q=Big+Field+Pavilion,+Sugar+House+Park,+Salt+Lake+City,+UT+84106" style="display: block; margin: 0 0 24px; border-radius: 8px; overflow: hidden; border: 1px solid #c4c8be; text-decoration: none;">
+          <img src="https://bringyourowncake.com/map-slc.png" alt="Big Field Pavilion, Sugar House Park" style="display: block; width: 100%; height: auto;" />
+        </a>
+
         <p style="color: #1d1c15; font-size: 16px; line-height: 1.7; margin: 0 0 16px;">The idea behind BYOC is that everyone who purchases a ticket is required to bring a cake to share. The more cakes, the merrier, and having everyone bring one helps make the event as fun, beautiful, and abundant as possible for all attending!</p>
 
         <div style="background-color: #d5e8cb; padding: 20px; border-radius: 8px; margin: 0 0 24px; border: 1px solid #b9ccb0;">
